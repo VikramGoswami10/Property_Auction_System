@@ -1,4 +1,4 @@
-# Property_Auction_System
+# Property Auction System
 The Property Auction System is a modern, scalable, and user-friendly platform for managing property auctions. Built using a microservices architecture, it integrates multiple technologies for seamless performance, including J2EE for backend services, C# microservices for specific functionalities, MySQL for data storage, and React for a dynamic and interactive user interface.
 ## Features
 1) **User Registration and Authentication**: Secure login and account management.
