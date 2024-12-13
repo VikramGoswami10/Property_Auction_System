@@ -1,9 +1,13 @@
 import './App.css';
+import { Home, Layout } from './Routes/index';
+
 
 function App() {
   return (
     <>
-        PROPERTY AUCTION SYSTEM
+        <Layout>
+            <Home/>
+        </Layout>
     </>
   );
 }
