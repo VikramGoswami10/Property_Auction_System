@@ -10,8 +10,8 @@ body {
 
 /*    Navbar   */
 .menu-container {
-  /* small screen navbar three dash*\
-  /* background-color: rgb(100, 80, 194); */
+  /* small screen navbar three dash*/
+  background-color: rgb(100, 80, 194); 
   opacity: 0;
   transform: translateX(-100%);
   transition: opacity 0.3s ease-out, transform 0.3s ease-out;
@@ -27,7 +27,7 @@ body {
   transform: translateX(-100%);
 }
 /* Add the sticky class to make the header sticky */
-.Header {
+.header {
   position: fixed;
   width: 100%;
   top: 0;
@@ -35,7 +35,7 @@ body {
   transition: background-color 0.3s ease;
 }
 /* Add the animation class when scrolling down */
-.Header.scrolled {
+.header.scrolled {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   animation: fadeInDown 0.5s ease;
