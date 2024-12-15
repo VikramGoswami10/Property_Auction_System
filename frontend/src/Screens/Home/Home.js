@@ -1,9 +1,11 @@
+import { Hero } from "../../Routes";
 
 export const Home = () => {
 
     return (
         <>
-            <h1>HOME COMPONENT</h1>
+            <Hero />
+            <CategorySlider />
         </>
     );
 }

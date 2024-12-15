@@ -8,5 +8,6 @@ export const User1 = "https://cdn-icons-png.flaticon.com/128/236/236832.png";
 export { Title, Body, Caption, CustomLink, CustomNavLink, Container, PrimaryButton, ProfileCard, Heading, CustomNavLinkList } from "../Components/Common/Design";
 // Home Section
 export { Home } from "../Screens/Home/Home";
-
+export { Hero } from "../Components/hero/Hero"
+export { CategorySlider } from "../Components/hero/CategorySlider";
 
