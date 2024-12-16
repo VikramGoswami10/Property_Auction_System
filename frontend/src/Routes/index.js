@@ -9,11 +9,6 @@ export { Title, Body, Caption, CustomLink, CustomNavLink, Container, PrimaryButt
 // Home Section
 export { Home } from "../Screens/Home/Home";
 export { Hero } from "../Components/Hero/Hero"
-<<<<<<< HEAD
 export { default as CategorySlider } from "../Components/Hero/CategorySlider";
-=======
-export { CategorySlider } from "../Components/Hero/CategorySlider";
->>>>>>> home/adding-homeSearch-category
-
 
 export { categorylists } from "../Utils/Data";
