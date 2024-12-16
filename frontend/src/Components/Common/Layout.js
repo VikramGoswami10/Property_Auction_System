@@ -1,6 +1,6 @@
 import React from "react";
-import {Header} from "../../../Routes/index";
-import {Footer} from "../../../Routes/index";
+import {Header} from "../../Routes/index";
+import {Footer} from "../../Routes/index";
 
 
 
