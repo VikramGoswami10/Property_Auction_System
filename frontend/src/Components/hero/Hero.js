@@ -1,5 +1,5 @@
-import { Body, Caption, Container, PrimaryButton, ProfileCard, Title } from "../../router";
-import { IoIosSearch } from "react-icons/io";
+import { Body, Caption, Container, ProfileCard, Title } from "../../Routes";
+// import { IoIosSearch } from "react-icons/io";
 import { AiOutlinePropertySafety } from "react-icons/ai";
 import PropTypes from "prop-types";
 import { CiCirclePlus } from "react-icons/ci";
@@ -20,7 +20,8 @@ export const Hero = () => {
             Where the highest bidder always wins—no popcorn required!
             </Title>
             <Body className="leading-7 text-gray-200 my-8">
-            From home auctions to traditional listings—welcome to a simpler way to buy and sell real estate.
+            {/* Experience the thrill of winning and the ease of buying—real estate, reimagined for you. */}
+            Reimagine property buying with transparent auctions, smooth transactions, and unbeatable opportunities. From competitive bidding to seamless ownership, we’ve crafted a platform where every highest bid brings you closer to the keys to your future.
             </Body>
             <SearchBox />
             <div className="flex flex-col items-center gap-8 my-8">
@@ -47,16 +48,18 @@ export const Hero = () => {
           </div>
           </div>
           <div className="w-full md:w-1/2 my-16 relative py-16">
-            <img src="../images/home/hero.webp" alt="" />
+          
+            <img src="../images/hero/hero.png" alt="Hero-IMG" />
             <div className="horiz-move absolute md:top-28 top-8 left-0">
-              <Box title="Proof of quality" desc="Lorem Ipsum Dolar Amet" />
+              <Box title="Verified Property Listings" desc="Authentic and trusted properties" />
             </div>
             <div className="horiz-move absolute bottom-72 right-0">
-              <Box title="Safe and secure" desc="Lorem Ipsum Dolar Amet" />
+              <Box title="Transparent Bidding Process" desc="Fair, real-time competition" />
             </div>
 
             <div className="px-5 py-4 bg-white shadow-md flex items-center gap-5 rounded-xl ml-5 -mt-5 vert-move w-1/2">
-              <Title>100+ Happy Client</Title>
+              <Title>100+Successful Auctions</Title>
+              {/* 100+ Auctions Closed */}
               <div className="flex items-center">
                 <ProfileCard className="border-2 border-white">
                   <img src={User1} alt="User1" className="w-full h-full object-cover" />
