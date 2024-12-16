@@ -1,5 +1,5 @@
-import { Body, Caption, Container, PrimaryButton, ProfileCard, Title } from "../../Routes";
-import { IoIosSearch } from "react-icons/io";
+import { Body, Caption, Container,  ProfileCard, Title } from "../../Routes";
+// import { IoIosSearch } from "react-icons/io";
 import { AiOutlinePropertySafety } from "react-icons/ai";
 import PropTypes from "prop-types";
 import { CiCirclePlus } from "react-icons/ci";
