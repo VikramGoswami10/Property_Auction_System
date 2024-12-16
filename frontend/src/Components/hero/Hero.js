@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { Body, Caption, Container, ProfileCard, Title } from "../../Routes";
+=======
+import { Body, Caption, Container,  ProfileCard, Title } from "../../Routes";
+>>>>>>> home/adding-homeSearch-category
 // import { IoIosSearch } from "react-icons/io";
 import { AiOutlinePropertySafety } from "react-icons/ai";
 import PropTypes from "prop-types";

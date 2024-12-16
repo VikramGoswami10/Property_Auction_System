@@ -87,7 +87,7 @@ export const Header = () => {
                 </CustomNavLink>
 
                 {/* Join Link */}
-                <CustomNavLink href="/register" className={`${!isHomePage || isScrolled ? "bg-green" : "bg-white"} px-8 py-2 rounded-full text-primary shadow-md`}>
+                <CustomNavLink href="/register" className={`${!isHomePage || isScrolled ? "bg-green" : "bg-white"} px-8 py-2 rounded-full text-yellow shadow-md`}>
                   Join
                 </CustomNavLink>
 
