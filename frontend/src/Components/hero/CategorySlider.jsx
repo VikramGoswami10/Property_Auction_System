@@ -1,4 +1,4 @@
-import { categorylists } from "../../utils/data";
+import { categorylists } from "../../Utils/Data";
 import { Container,Heading } from "../../Routes"
 import "./styles/CategorySlider.css"
 

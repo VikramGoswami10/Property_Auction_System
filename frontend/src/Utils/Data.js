@@ -34,29 +34,24 @@ export const menulists = [
   //CATEGORY LIST -->
   export const categorylists = [
     {
-      id: 1,
       title: "Residential",
-      image: "https://cdn.pixabay.com/photo/2016/11/18/17/46/house-1836070_640.jpg",
+      img: "https://cdn.pixabay.com/photo/2016/11/18/17/46/house-1836070_640.jpg",
     },
     {
-      id: 2,
       title: "Commercial",
-      image: "https://media.istockphoto.com/id/1048358188/photo/modern-building-in-paris.jpg?s=612x612&w=0&k=20&c=xQKe6UpXIZhIHQJ-pwrOMm1KIQd74Xc6haT-UcVYEMc=",
+      img: "https://media.istockphoto.com/id/1048358188/photo/modern-building-in-paris.jpg?s=612x612&w=0&k=20&c=xQKe6UpXIZhIHQJ-pwrOMm1KIQd74Xc6haT-UcVYEMc=",
     },
     {
-      id: 3,
       title: "Land",
-      image: "https://i.pinimg.com/736x/c8/30/ba/c830ba38c87f12a2b7e53c041633b634.jpg",
+      img: "https://i.pinimg.com/736x/c8/30/ba/c830ba38c87f12a2b7e53c041633b634.jpg",
     },
     {
-      id: 4,
       title: "Luxury",
-      image: "https://cbvalueaddrealty.in/wp-content/uploads/2021/08/Vijay-Mallyas-Penthouse.jpeg",
+      img: "https://cbvalueaddrealty.in/wp-content/uploads/2021/08/Vijay-Mallyas-Penthouse.jpeg",
     },
     {
-      id: 5,
       title: "Special Use",
-      image: "https://www.aambyvalley.com/images/golf/2.jpg",
+      img: "https://www.aambyvalley.com/images/golf/2.jpg",
     }
   ];
   
