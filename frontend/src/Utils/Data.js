@@ -253,43 +253,71 @@ export const menulists = [
   ];
    
     
-   // TOP COLLECTIONS
-//   export const topList = [
-//     {
-//       id: 1,
-//       catgeory: "Luxury Vehicles",
-//       total: 7,
-//       img1: "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/09/automotive_product-01-300x200.jpg",
-//       img2: "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/09/automotive_product-07-150x150.jpg",
-//       img3: "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/09/automotive_product-03-150x150.jpg",
-//       img4: "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/09/automotive_product-08-150x150.jpg",
-//     },
-//     {
-//       id: 2,
-//       catgeory: "Classic",
-//       total: 10,
-//       img1: "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/09/automotive_product-09-300x200.jpg",
-//       img2: "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/09/automotive_product-01-150x150.jpg",
-//       img3: "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/09/automotive_product-07-150x150.jpg",
-//       img4: "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/09/automotive_product-03-150x150.jpg",
-//     },
-//     {
-//       id: 3,
-//       catgeory: "Muscle Machines",
-//       total: 8,
-//       img1: "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/09/automotive_product-07-300x200.jpg",
-//       img2: "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/09/automotive_product-03-150x150.jpg",
-//       img4: "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/09/automotive_product-07-150x150.jpg",
-//       img3: "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/09/automotive_product-01-150x150.jpg",
-//     },
-//     {
-//       id: 4,
-//       catgeory: "Automotive",
-//       total: 4,
-//       img3: "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/09/automotive_product-05-300x200.jpg",
-//       img2: "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/09/automotive_product-05-768x768.jpg",
-//       img4: "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/09/automotive_product-07-150x150.jpg",
-//       img1: "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/09/automotive_product-04-768x768.jpg",
-//     },
-//   ];
+   // Past Auctions
+  export const pastAuctions = [
+    {
+      id: 1,
+      image: "https://gladwinsrealty.com/app/web/upload/large/184_be2efbdd7dfea3586ff22d89758600b0.jpg",
+      title: "1 BHK Flat on Sale",
+      bprice: 853,
+      price: 50000,
+      catgeory: "Residential",
+    },
+    {
+      id: 2,
+      image: "https://www.sastaghar.in/wp-content/uploads/2022/06/SG-39.jpg",
+      title: "4 BHK Flat On Sale",
+      bprice: 452,
+      price: 14200,
+      catgeory: "Residential",
+    },
+    {
+      id: 3,
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGmTgcIJw4h9E9lbX3KOLR68rZ3i9MEKmhug&s",
+      title: "Commercial Office on Sale",
+      bprice: 105,
+      price: 10000,
+      catgeory: "Commercial",
+    },
+    {
+      id: 4,
+      image: "https://www.swfwmd.state.fl.us/sites/default/files/styles/hero_tablet_768x432_x2/public/fsbo-000067132033.jpg?itok=6VIRUBXZ",
+      title: "Land Property On Sale",
+      bprice: 40000,
+      price: 50000,
+      catgeory: "Land",
+    },
+    {
+      id: 5,
+      image: "https://i.ibb.co/RNN6vsf/Luxury-Villas.jpg ",
+      title: "Luxury villa on Sale",
+      bprice: 4000,
+      price: 800000,
+      catgeory: "Luxury",
+    },
+    {
+      id: 6,
+      image: "https://arvgroupindia.com/wp-content/uploads/2023/01/Newtown-image-1.jpg",
+      title: "Commercial Shops on Sale",
+      bprice: 40000,
+      price: 80000,
+      catgeory: "Commercial",
+    },
+    {
+      id: 6,
+      image: "https://img.jamesedition.com/listing_images/2023/11/15/10/59/05/c5c1a28d-367b-4f1e-b9f6-5541ceca12a2/je/760x470xc.jpg",
+      title: "Land Property On Sale",
+      bprice: 400,
+      price: 800000,
+      catgeory: "Land",
+    },
+    {
+      id: 7,
+      image: "https://www.villasinbangalore.co.in/wp-content/uploads/2016/04/Prestige-Augusta-Golf-Village-ed.jpg",
+      title: "Luxury Villa on Sale",
+      bprice: 20000,
+      price: 80000000,
+      catgeory: "Residential",
+    }
+  ];
   
