@@ -107,9 +107,9 @@ const SearchBox = () => {
           <label htmlFor="max-price">Max Price</label>
           <select id="max-price" className="form-input">
             <option>Any</option>
-            <option>£100,000</option>
-            <option>£200,000</option>
-            <option>£300,000</option>
+            <option>₹ 100,000</option>
+            <option>₹ 200,000</option>
+            <option>₹ 300,000</option>
           </select>
         </div>
         <div className="form-group">
