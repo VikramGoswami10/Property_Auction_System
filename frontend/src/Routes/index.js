@@ -15,3 +15,5 @@ export { ProductList } from "../Components/hero/ProductList";
 export { productlists } from "../Utils/Data"
 export { UpcomingAuction } from "../Components/hero/UpcomingAuction"
 export { upcomingAuctions } from "../Utils/Data";
+export { Process } from "../Components/hero/Process"
+export { processList } from "../Utils/Data"
