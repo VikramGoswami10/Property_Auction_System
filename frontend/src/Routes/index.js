@@ -13,3 +13,5 @@ export { default as CategorySlider } from "../Components/hero/CategorySlider";
 export { categorylists } from "../Utils/Data";
 export { ProductList } from "../Components/hero/ProductList";
 export { productlists } from "../Utils/Data"
+export { UpcomingAuction } from "../Components/hero/UpcomingAuction"
+export { upcomingAuctions } from "../Utils/Data";

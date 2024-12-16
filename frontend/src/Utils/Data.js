@@ -184,69 +184,73 @@ export const menulists = [
 //     },
 //   ];
   
-    // TOP SELLER LIST --> 
-//   export const topSellerList = [
-//     {
-//       id: 1,
-//       title: "William",
-//       profile: "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/01/client-5-1.png",
-//       amount: "100",
-//     },
-//     {
-//       id: 2,
-//       title: "Orko",
-//       profile: "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/01/client-6.png",
-//       amount: "200",
-//     },
-//     {
-//       id: 3,
-//       title: "Nipa",
-//       profile: "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/01/client-3.png",
-//       amount: "300",
-//     },
-//     {
-//       id: 4,
-//       title: "Joseph",
-//       profile: "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/01/client-2-2.png",
-//       amount: "100",
-//     },
-//     {
-//       id: 5,
-//       title: "Isabella",
-//       profile: "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/01/client-10-2.png",
-//       amount: "100",
-//     },
-//     {
-//       id: 6,
-//       title: "Emily",
-//       profile: "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/01/client-15-1.png",
-//       amount: "100",
-//     },
-//     {
-//       id: 7,
-//       title: "Devmahbub",
-//       profile: "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/01/client-8-3.png",
-//       amount: "100",
-//     },
-//     {
-//       id: 8,
-//       title: "Ava Garcia",
-//       profile: "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/01/client-4-1.png",
-//       amount: "100",
-//     },
-//     {
-//       id: 9,
-//       title: "Amelia Harris",
-//       profile: "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/01/client-13.png",
-//       amount: "100",
-//     },
-//     {
-//       id: 10,
-//       title: "Alexander",
-//       profile: "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/01/client-8.png",
-//       amount: "100",
-//     },
-//   ];
+    // Upcoming Auction --> 
+  export const upcomingAuctions = [
+    {
+      id: 1,
+      image: "https://www.guptasen.com/wp-content/uploads/2023/01/luxury-villas-for-sale-manor-palghar.webp",
+      title: "Luxury Villa On Sale",
+      bprice: 853,
+      price: 5000,
+      catgeory: "Luxury",
+    },
+    {
+      id: 2,
+      image: "https://assets.land.com/resizedimages/304/430/h/80/w/1-5232578215",
+      title: "Land Property on Sale",
+      bprice: 452,
+      price: 1420,
+      catgeory: "Land",
+    },
+    {
+      id: 3,
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBs84XpbrXcTkS9i5bV0lrM0cdgWAeFc8dbQ&s",
+      title: "Commercial Shops on Sale",
+      bprice: 105,
+      price: 100,
+      catgeory: "Commercial",
+    },
+    {
+      id: 4,
+      image: "https://5.imimg.com/data5/SELLER/Default/2024/4/406348065/FW/WO/ZQ/183085037/3-bhk-residential-flat-sales-service-500x500.jpg",
+      title: "3 BHK Flat On Sale",
+      bprice: 40000,
+      price: 50000,
+      catgeory: "Residential",
+    },
+    {
+      id: 5,
+      image: "https://housing-images.n7net.in/354cef8f/6cc7e596db5c29e346e4c7646a032b8c/v0/medium.jpg ",
+      title: "Commercial Showroom for Sale",
+      bprice: 4000,
+      price: 8000,
+      catgeory: "Commercial",
+    },
+    {
+      id: 6,
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrjRN5hKf8Ygu0jvwNKFizPrBVDOIQcvsVcQ&s",
+      title: "Land Property on Sale",
+      bprice: 40000,
+      price: 80000,
+      catgeory: "Land",
+    },
+    {
+      id: 6,
+      image: "https://5.imimg.com/data5/SELLER/Default/2022/2/FH/DT/TG/589760/new-product.jpeg",
+      title: "5 BHK Flat for Sale in Hitech City",
+      bprice: 400,
+      price: 800,
+      catgeory: "Residential",
+    },
+    {
+      id: 7,
+      image: "https://www.montverthomes.com/ongoing-properties-in-pune/mont-vert-sonnet/images/2bhk-flats-in-wakad-3d-view.jpg",
+      title: "3 BHK Flat on Sale",
+      bprice: 200,
+      price: 800,
+      catgeory: "Residential",
+    }
+  ];
    
     
    // TOP COLLECTIONS

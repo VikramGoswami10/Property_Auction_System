@@ -1,5 +1,5 @@
 import { ProductList } from "../../Components/hero/ProductList";
-import { Hero } from "../../Routes";
+import { Hero, UpcomingAuction } from "../../Routes";
 import { CategorySlider } from "../../Routes";
 
 export const Home = () => {
@@ -9,6 +9,7 @@ export const Home = () => {
             <Hero />
             <CategorySlider />
             <ProductList />
+            <UpcomingAuction />
         </>
     );
 }
