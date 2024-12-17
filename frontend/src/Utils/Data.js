@@ -6,27 +6,32 @@ export const menulists = [
     },
     {
       id: 2,
-      path: "/property",
+      // path: "/property",
+      path: "/",
       link: "property",
     },
     {
       id: 3,
-      path: "/How-to-Bid",
+      path: "/",
+      // path: "/How-to-Bid",
       link: "How To Bid",
     },
     {
       id: 4,
-      path: "/about",
+      path: "/",
+      // path: "/about",
       link: "about",
     },
     {
       id: 5,
-      path: "/search",
+      path: "/",
+      // path: "/search",
       link: "Search",
     },
     {
       id: 6,
-      path: "/contact",
+      path: "/",
+      // path: "/contact",
       link: "Contact",
     },
   ];

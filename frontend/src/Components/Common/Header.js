@@ -92,7 +92,8 @@ export const Header = () => {
                 </CustomNavLink>
 
                 {/* Profile Card */}
-                <CustomNavLink href="/dashboard">
+                <CustomNavLink href="/">
+                {/* <CustomNavLink href="/dashboard"> */}
                   <ProfileCard>
                     <img src={User1} alt="" className="w-full h-full object-cover" />
                   </ProfileCard>
