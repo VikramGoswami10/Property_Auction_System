@@ -2,7 +2,7 @@ import './App.css';
 import { BrowserRouter,Route, Routes } from 'react-router-dom'; // Import BrowserRouter to enable routing
 import { Home, Layout } from './Routes/index';
 import { ScrollToTop} from './Routes/index';
-import { Login ,Register } from './Routes/index';
+import { Login ,Register ,LoginAsSeller } from './Routes/index';
 function App() {
   return (
     <>
@@ -40,6 +40,20 @@ function App() {
               </Layout>
             }
           />
+
+          {/* Seller Login Page */}
+          <Route
+            path="/seller/login"
+            element={
+              // <PrivateRoute>
+                <Layout>
+                  <LoginAsSeller />
+                </Layout>
+              // </PrivateRoute>
+            }
+          />
+
+
         </Routes>
     </BrowserRouter>
     </>
