@@ -157,32 +157,34 @@ export const menulists = [
   ];
 
         // HOW IT WORKS -->
-  export const processList = [
-    {
-      id: "01",
-      title: "Sign up",
-      desc: "Sign your car up via our contact form or via the WhatsApp chat on the website. Send us a couple of pictures of the car that you want to put up for auction.",
-      cover: "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/01/shape-7.png",
-    },
-    {
-      id: "02",
-      title: "Auction goes online",
-      desc: "As soon as we collect enough cars for the auction (we strive for 25 to 40 cars per auction), the auction will show up on the website.",
-      cover: "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/09/auction.png",
-    },
-    {
-      id: "03",
-      title: "Closing auction",
-      desc: "After the viewing day(s) the auction is still a few days open for new bids. We evaluate the highest bid after the closing of an auction.",
-      cover: "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/09/auction-2.png",
-    },
-    {
-      id: "04",
-      title: "The last steps",
-      desc: "After the car is sold to the highest bidder, all the cars will be collected by the buyers on a determined date.",
-      cover: "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/09/auction-3.png",
-    },
-  ];
+  // HOW IT WORKS -->
+export const processList = [
+  {
+    id: "01",
+    title: "Sign up",
+    desc: "Register on our platform by creating an account. Provide basic details and start exploring properties available for auction.",
+    cover: "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/01/shape-7.png",
+  },
+  {
+    id: "02",
+    title: "Auction goes online",
+    desc: "Browse through properties as they go live on the auction page. Each listing includes photos, descriptions, and bidding details.",
+    cover: "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/09/auction.png",
+  },
+  {
+    id: "03",
+    title: "Place Your Bids",
+    desc: "Participate by placing bids on properties of your interest. Stay updated with the latest bids and ensure you're in the lead.",
+    cover: "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/09/auction-2.png",
+  },
+  {
+    id: "04",
+    title: "Winning and Finalizing",
+    desc: "If your bid is the highest, finalize the purchase. Complete payments and necessary paperwork to claim ownership of the property.",
+    cover: "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/09/auction-3.png",
+  },
+];
+
   
     // Upcoming Auction --> 
   export const upcomingAuctions = [
