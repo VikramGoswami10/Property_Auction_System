@@ -1,14 +1,38 @@
 import './App.css';
-import { BrowserRouter } from 'react-router-dom'; // Import BrowserRouter to enable routing
+import { BrowserRouter,Route, Routes } from 'react-router-dom'; // Import BrowserRouter to enable routing
 import { Home, Layout } from './Routes/index';
-
+import { ScrollToTop} from './Routes/index';
+import { Login } from './Screens/auth/Login';
 function App() {
   return (
-    <BrowserRouter> {/* Wrap the layout with BrowserRouter */}
-        <Layout>
-            <Home/>
-        </Layout>
+    <>
+    <BrowserRouter>
+        <ScrollToTop />
+        <Routes>
+
+          {/* HOME PAGE  */}
+          <Route
+            path="/"
+            element={
+              <Layout>
+                <Home />
+              </Layout>
+            }
+          />
+
+          {/* LOGIN IN PAGE */}
+          <Route
+            path="/login"
+            element={
+              <Layout>
+                <Login />
+              </Layout>
+            }
+          />
+
+        </Routes>
     </BrowserRouter>
+    </>
   );
 }
 
