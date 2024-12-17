@@ -45,14 +45,12 @@ function App() {
           <Route
             path="/seller/login"
             element={
-              // <PrivateRoute>
                 <Layout>
                   <LoginAsSeller />
                 </Layout>
-              // </PrivateRoute>
             }
           />
-
+        
 
         </Routes>
     </BrowserRouter>

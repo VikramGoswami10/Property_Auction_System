@@ -19,11 +19,15 @@ export const ProductCard = ({ item }) => {
 
           <div className="absolute top-0 left-0 p-2 w-full">
             <div className="flex items-center justify-between">
-              {item?.isSoldout ? (
+            
+            {/* ON Stock And In Stock Display in Property Images */}
+              {/* {item?.isSoldout ? (
                 <Caption className="text-red-500 bg-white px-3 py-1 text-sm rounded-full">Sold Out</Caption>
               ) : (
                 <Caption className="text-green bg-green_100 px-3 py-1 text-sm rounded-full">On Stock</Caption>
-              )}
+              )} */}
+
+              
               <Caption className="text-green bg-green_100 px-3 py-1 text-sm rounded-full">{item?.totalBids} Bids</Caption>
             </div>
           </div>
