@@ -1,3 +1,4 @@
+export { Register } from '../Screens/auth/Register';
 export { Login } from '../Screens/auth/Login';
 
 // Common Section

@@ -2,7 +2,7 @@ import './App.css';
 import { BrowserRouter,Route, Routes } from 'react-router-dom'; // Import BrowserRouter to enable routing
 import { Home, Layout } from './Routes/index';
 import { ScrollToTop} from './Routes/index';
-import { Login } from './Screens/auth/Login';
+import { Login ,Register } from './Routes/index';
 function App() {
   return (
     <>
@@ -30,6 +30,16 @@ function App() {
             }
           />
 
+
+          {/* REGISTER PAGE */}
+          <Route
+            path="/register"
+            element={
+              <Layout>
+                <Register />
+              </Layout>
+            }
+          />
         </Routes>
     </BrowserRouter>
     </>
