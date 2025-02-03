@@ -3,7 +3,6 @@ import { useLocation } from "react-router-dom"; // current route/location
 
 // Designs
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai"; // for Ai icons
-import { IoSearchOutline } from "react-icons/io5"; // for Io icons
 
 import { Container, CustomNavLink, CustomNavLinkList, ProfileCard } from "../../Routes";
 import { User1 } from "../../Routes";
@@ -33,46 +32,46 @@ export const Header = () => {
     };
   }, []);
 
-   // Check if it's the home page
+  // Check if it's the home page
   const isHomePage = location.pathname === "/";
   const role = "buyer"; // Dynamic role could come from user state or context
 
   return (
     <>
-    <header className={isHomePage ? `header py-1 bg-primary ${isScrolled ? "scrolled" : ""}` : `header bg-white shadow-s1 ${isScrolled ? "scrolled" : ""}`}>
+      <header className={isHomePage ? `header py-1 bg-primary ${isScrolled ? "scrolled" : ""}` : `header bg-white shadow-s1 ${isScrolled ? "scrolled" : ""}`}>
         <Container>
           <nav className="p-4 flex justify-between items-center relative">
             <div className="flex items-center gap-14">
-             {/* LOGO */}
+              {/* LOGO */}
               <div>
-            {isHomePage && !isScrolled ? (
+                {isHomePage && !isScrolled ? (
                   <img src="../images/common/header-logo.png" alt="LogoImg" className="h-11" />
                 ) : (
                   <img src="../images/common/header-logo.png" alt="LogoImg" className="h-11" />
                 )}
-            </div>
+              </div>
 
-            {/* Desktop Menu Links */}
-            <div className="hidden lg:flex items-center justify-between gap-8">
-              {menulists.map((list) => (
-                <li key={list.id} className="capitalize list-none">
-                  <CustomNavLinkList
-                    href={list.path}
-                    isActive={location.pathname === list.path}
-                    // on scroll change text color
-                    className={`${isScrolled || !isHomePage ? "text-black" : "text-white"}`}
+              {/* Desktop Menu Links */}
+              <div className="hidden lg:flex items-center justify-between gap-8">
+                {menulists.map((list) => (
+                  <li key={list.id} className="capitalize list-none">
+                    <CustomNavLinkList
+                      href={list.path}
+                      isActive={location.pathname === list.path}
+                      // on scroll change text color
+                      className={`${isScrolled || !isHomePage ? "text-black" : "text-white"}`}
                     >
-                    {list.link}
-                  </CustomNavLinkList>
-                </li>
-              ))}
+                      {list.link}
+                    </CustomNavLinkList>
+                  </li>
+                ))}
+              </div>
             </div>
-          </div>
 
-           {/* Right Section */}
+            {/* Right Section */}
             <div className="flex items-center gap-8 icons">
               <div className="hidden lg:flex lg:items-center lg:gap-8">
-                <IoSearchOutline size={23} className={`${isScrolled || !isHomePage ? "text-black" : "text-white"}`} />
+                {/* 🔴 REMOVED SEARCH ICON */}
                 
                 {/* Conditional "Become a Seller" Link */}
                 {role === "buyer" && (
@@ -93,7 +92,6 @@ export const Header = () => {
 
                 {/* Profile Card */}
                 <CustomNavLink href="/">
-                {/* <CustomNavLink href="/dashboard"> */}
                   <ProfileCard>
                     <img src={User1} alt="" className="w-full h-full object-cover" />
                   </ProfileCard>
