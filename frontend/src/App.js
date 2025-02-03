@@ -1,21 +1,34 @@
-import './App.css';
-import { BrowserRouter,Route, Routes } from 'react-router-dom'; // Import BrowserRouter to enable routing
-import { Home, Layout } from './Routes/index';
-import { ScrollToTop} from './Routes/index';
-import { Login ,Register ,LoginAsSeller } from './Routes/index';
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom"; // Import BrowserRouter to enable routing
+import { Home, Layout } from "./Routes/index";
+import { ScrollToTop } from "./Routes/index";
+import { Login, Register, LoginAsSeller } from "./Routes/index";
+import AuctionPage from "./Components/Pages/AuctionPage";
+
 function App() {
   return (
     <>
-    <BrowserRouter>
+      <BrowserRouter>
         <ScrollToTop />
         <Routes>
-
           {/* HOME PAGE  */}
           <Route
             path="/"
             element={
               <Layout>
                 <Home />
+              </Layout>
+            }
+          />
+
+          {/* AUCTION PAGE */}
+          <Route
+            path="/auction"
+            element={
+              <Layout>
+                <div className="mt-24">
+                  <AuctionPage />
+                </div>
               </Layout>
             }
           />
@@ -29,7 +42,6 @@ function App() {
               </Layout>
             }
           />
-
 
           {/* REGISTER PAGE */}
           <Route
@@ -45,15 +57,13 @@ function App() {
           <Route
             path="/seller/login"
             element={
-                <Layout>
-                  <LoginAsSeller />
-                </Layout>
+              <Layout>
+                <LoginAsSeller />
+              </Layout>
             }
           />
-        
-
         </Routes>
-    </BrowserRouter>
+      </BrowserRouter>
     </>
   );
 }

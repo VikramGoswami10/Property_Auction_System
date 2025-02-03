@@ -10,9 +10,10 @@ export { Layout } from '../Components/Common/Layout';
 
 export const User1 = "https://cdn-icons-png.flaticon.com/128/236/236832.png";
 export { Title, Body, Caption, CustomLink, CustomNavLink, Container, PrimaryButton, ProfileCard, Heading, CustomNavLinkList } from "../Components/Common/Design";
+
 // Home Section
 export { Home } from "../Screens/Home/Home"
-// export { Hero } from "../Components/Hero/Hero"
+
 export { Hero } from "../Components/Hero/Hero";
 
 export { default as CategorySlider } from "../Components/Hero/CategorySlider"
@@ -28,3 +29,5 @@ export { pastAuctions} from "../Utils/Data"
 
 export {ScrollToTop} from '../../src/Utils/ScrollToTop'
 
+
+// export {AuctionPage} from '../Components/AuctionPage'

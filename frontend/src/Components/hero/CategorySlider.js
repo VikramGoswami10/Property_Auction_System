@@ -6,7 +6,7 @@ const CategorySlider = () => {
   return (
     <section className="catgeory-slider pb-16">
     <Container>
-      <Heading title="Browse the catgeorys" subtitle="Most viewed and all-time top-selling category" />
+      <Heading title="Browse the categories" subtitle="Most viewed and all-time top-selling category" />
       <div className="property-container">
         <div className="property-types">
           {categorylists.map((property, index) => (

@@ -2,13 +2,13 @@ export const menulists = [
     {
       id: 1,
       path: "/",
-      link: "home ",
+      link: "Home ",
     },
     {
       id: 2,
-      // path: "/property",
-      path: "/",
-      link: "property",
+      path: "/auction",
+      // path: "/",
+      link: "Auction",
     },
     {
       id: 3,
@@ -20,20 +20,21 @@ export const menulists = [
       id: 4,
       path: "/",
       // path: "/about",
-      link: "about",
+      link: "About",
     },
+   
     {
       id: 5,
-      path: "/",
-      // path: "/search",
-      link: "Search",
-    },
-    {
-      id: 6,
       path: "/",
       // path: "/contact",
       link: "Contact",
     },
+     // {
+    //   id: 6,
+    //   path: "/",
+    //   // path: "/search",
+    //   link: "Search",
+    // },
   ];
   
   //CATEGORY LIST -->
@@ -127,41 +128,41 @@ export const menulists = [
       price: 800,
       catgeory: "Luxury",
     },
-    {
-      id: 8,
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9pvfp9theVhtVb_dKUDJoOzLVe6Gt3mWD7A&s",
-      title: "Office Space Available for Sale",
-      bprice: 200,
-      price: 800,
-      catgeory: "Commercial",
-    },
-    {
-      id: 9,
-      image: "https://dyimg2.realestateindia.com/prop_images/2433055/1283367_6-350x350.jpg",
-      title: "Showroom for Sale",
-      bprice: 853,
-      price: 5000,
-      catgeory: "Special Use",
-    },
-    {
-      id: 10,
-      image: "https://www.conradvillas.com/uploads/properties/71/luxury-beachfront-villa-for-sale-in-bali-15234049.jpg  ",
-      title: "Beach front Villa for Sale",
-      bprice: 853,
-      price: 5000,
-      catgeory: "Luxury",
-    },
-    {
-      id: 11,
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjwc_Zqb7ld7__xh_xkRg3_Yz7zXaT9SQVzw&s",
-      title: "1 BHK Flat for Sale",
-      bprice: 853,
-      price: 5000,
-      catgeory: "Residential",
-    }
+    // {
+    //   id: 8,
+    //   image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9pvfp9theVhtVb_dKUDJoOzLVe6Gt3mWD7A&s",
+    //   title: "Office Space Available for Sale",
+    //   bprice: 200,
+    //   price: 800,
+    //   catgeory: "Commercial",
+    // },
+    // {
+    //   id: 9,
+    //   image: "https://dyimg2.realestateindia.com/prop_images/2433055/1283367_6-350x350.jpg",
+    //   title: "Showroom for Sale",
+    //   bprice: 853,
+    //   price: 5000,
+    //   catgeory: "Special Use",
+    // },
+    // {
+    //   id: 10,
+    //   image: "https://www.conradvillas.com/uploads/properties/71/luxury-beachfront-villa-for-sale-in-bali-15234049.jpg  ",
+    //   title: "Beach front Villa for Sale",
+    //   bprice: 853,
+    //   price: 5000,
+    //   catgeory: "Luxury",
+    // },
+    // {
+    //   id: 11,
+    //   image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjwc_Zqb7ld7__xh_xkRg3_Yz7zXaT9SQVzw&s",
+    //   title: "1 BHK Flat for Sale",
+    //   bprice: 853,
+    //   price: 5000,
+    //   catgeory: "Residential",
+    // }
   ];
 
-        // HOW IT WORKS -->
+        
   // HOW IT WORKS -->
 export const processList = [
   {
@@ -326,5 +327,27 @@ export const processList = [
       price: 80000000,
       catgeory: "Residential",
     }
+  ];
+  
+
+ export const auctionData = [
+    {
+      id: 1,
+      title: "Flat for Sale in RAIGAD Karjat",
+      possession: "Symbolic",
+      bank: "Canara Bank",
+      price: "₹19.56 Lakh",
+      bankPropertyId: "CNRB160001899946",
+      image: "https://oceaninfra.co/wp-content/uploads/2023/10/3-BHK-Flat-Sale-in-Thane-1-2-BHK-Flat-in-Thane-Ocean-Infra.webp",
+    },
+    {
+      id: 2,
+      title: "Flat for Sale in Mahim Palghar",
+      possession: "Symbolic",
+      bank: "Canara Bank",
+      price: "₹22.50 Lakh",
+      bankPropertyId: "CNRB16000176339",
+      image: "https://5.imimg.com/data5/BE/CR/XD/SELLER-27323816/4-bhk-flat-sale-service-500x500.jpg",
+    },
   ];
   
