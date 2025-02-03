@@ -1,4 +1,4 @@
-import { ProductList } from "../../Components/Hero/ProductList";
+import { ProductList } from "../../Components/hero/ProductList";
 import { Hero, UpcomingAuction, Process, PastAuction} from "../../Routes";
 import { CategorySlider } from "../../Routes";
 

@@ -1,33 +1,39 @@
-export { LoginAsSeller } from '../Screens/auth/LoginAsSeller';
-export { Register } from '../Screens/auth/Register';
-export { Login } from '../Screens/auth/Login';
+// Home Section
+export { Home } from "../Screens/Home/Home"; 
+
+// Auth Section
+export { LoginAsSeller } from "../Screens/auth/LoginAsSeller";
+export { Register } from "../Screens/auth/Register";
+export { Login } from "../Screens/auth/Login";
 
 // Common Section
-export { Header } from '../Components/Common/Header';
-export { Footer } from '../Components/Common/Footer';
-// export { Home } from '../Components/Common/';
-export { Layout } from '../Components/Common/Layout';
+export { Header } from "../Components/Common/Header";
+export { Footer } from "../Components/Common/Footer";
+export { Layout } from "../Components/Common/Layout";
 
-export const User1 = "https://cdn-icons-png.flaticon.com/128/236/236832.png";
+// Common Design Elements
 export { Title, Body, Caption, CustomLink, CustomNavLink, Container, PrimaryButton, ProfileCard, Heading, CustomNavLinkList } from "../Components/Common/Design";
 
-// Home Section
-export { Home } from "../Screens/Home/Home"
+// Hero Section
+export { Hero } from "../Components/hero/Hero";
+export { default as CategorySlider } from "../Components/hero/CategorySlider";
+export { ProductList } from "../Components/hero/ProductList";
+export { UpcomingAuction } from "../Components/hero/UpcomingAuction";
+export { Process } from "../Components/hero/Process";
+export { PastAuction } from "../Components/hero/PastAuction";
 
-export { Hero } from "../Components/Hero/Hero";
+// Data Util
+export { categorylists } from "../Utils/Data";
+export { productlists } from "../Utils/Data";
+export { upcomingAuctions } from "../Utils/Data";
+export { processList } from "../Utils/Data";
+export { pastAuctions } from "../Utils/Data";
 
-export { default as CategorySlider } from "../Components/Hero/CategorySlider"
-export { categorylists } from "../Utils/Data"
-export { ProductList } from "../Components/Hero/ProductList"
-export { productlists } from "../Utils/Data"
-export { UpcomingAuction } from "../Components/Hero/UpcomingAuction"
-export { upcomingAuctions } from "../Utils/Data"
-export { Process } from "../Components/Hero/Process"
-export { processList } from "../Utils/Data"
-export { PastAuction } from "../Components/Hero/PastAuction"
-export { pastAuctions} from "../Utils/Data"
+// Other Utility
+export { ScrollToTop } from "../../src/Utils/ScrollToTop";
 
-export {ScrollToTop} from '../../src/Utils/ScrollToTop'
-
-
-// export {AuctionPage} from '../Components/AuctionPage'
+// Users
+export const User1 = "https://cdn-icons-png.flaticon.com/128/6997/6997662.png";
+export const User2 = "https://cdn-icons-png.flaticon.com/128/236/236832.png";
+export const User3 = "https://cdn-icons-png.flaticon.com/128/236/236831.png";
+export const User4 = "https://cdn-icons-png.flaticon.com/128/1154/1154448.png";

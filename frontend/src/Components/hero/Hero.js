@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import { CiCirclePlus } from "react-icons/ci";
 import CountUp from "react-countup";
 import "./styles/SearchBar.css";
+
 export const User1 = "https://cdn-icons-png.flaticon.com/128/6997/6997662.png";
 export const User2 = "https://cdn-icons-png.flaticon.com/128/236/236832.png";
 export const User3 = "https://cdn-icons-png.flaticon.com/128/236/236831.png";
