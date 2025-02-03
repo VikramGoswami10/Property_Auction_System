@@ -12,8 +12,8 @@ export const menulists = [
     },
     {
       id: 3,
-      path: "/",
-      // path: "/How-to-Bid",
+      // path: "/",
+      path: "/how-to-bid",
       link: "How To Bid",
     },
     {
@@ -25,9 +25,9 @@ export const menulists = [
    
     {
       id: 5,
-      path: "/",
-      // path: "/contact",
-      link: "Contact",
+      // path: "/",
+      path: "/contact",
+      link: "Contact Us",
     },
      // {
     //   id: 6,

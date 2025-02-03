@@ -1,9 +1,9 @@
 import "./App.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom"; // Import BrowserRouter to enable routing
-import { Home, Layout } from "./Routes/index";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Home, HowToBid, Layout , AuctionPage , ContactUs } from "./Routes/index";
 import { ScrollToTop } from "./Routes/index";
 import { Login, Register, LoginAsSeller } from "./Routes/index";
-import AuctionPage from "./Components/Pages/AuctionPage";
+
 
 function App() {
   return (
@@ -28,6 +28,29 @@ function App() {
               <Layout>
                 <div className="mt-24">
                   <AuctionPage />
+                </div>
+              </Layout>
+            }
+          />
+
+          {/* How To Bid PAGE */}
+          <Route
+            path="/how-to-bid"
+            element={
+              <Layout>
+                <div className="mt-24">
+                  <HowToBid />
+                </div>
+              </Layout>
+            }
+          />
+           {/* How To Contact Us PAGE */}
+           <Route
+            path="/contact"
+            element={
+              <Layout>
+                <div className="mt-24">
+                  <ContactUs />
                 </div>
               </Layout>
             }

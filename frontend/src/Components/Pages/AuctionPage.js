@@ -2,7 +2,7 @@ import { useState } from "react";
 import { MdFavoriteBorder } from "react-icons/md";
 import { auctionData } from "../../Utils/Data";
 
-const AuctionPage = () => {
+export const AuctionPage = () => {
   const [sortBy, setSortBy] = useState("Most Recent");
   const [isBudgetOpen, setIsBudgetOpen] = useState(false);
   const [isPropertyTypeOpen, setIsPropertyTypeOpen] = useState(false);
@@ -174,4 +174,4 @@ const AuctionPage = () => {
   );
 };
 
-export default AuctionPage;
+

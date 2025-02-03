@@ -1,6 +1,12 @@
 // Home Section
 export { Home } from "../Screens/Home/Home"; 
 
+// Header Section
+export { HowToBid } from "../Components/Pages/HowToBid";
+export {AuctionPage} from "../Components/Pages/AuctionPage";
+export { default as ContactUs } from "../Components/Pages/ContactUs";
+
+
 // Auth Section
 export { LoginAsSeller } from "../Screens/auth/LoginAsSeller";
 export { Register } from "../Screens/auth/Register";
