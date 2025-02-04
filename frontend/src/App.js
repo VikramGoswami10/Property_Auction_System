@@ -1,9 +1,18 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Home, HowToBid, Layout , AuctionPage , ContactUs , FAQ , UpcomingAuctionPage , PastAuctionPage} from "./Routes/index";
+import {
+  Home,
+  HowToBid,
+  Layout,
+  AuctionPage,
+  ContactUs,
+  FAQ,
+  UpcomingAuctionPage,
+  PastAuctionPage,
+  PropertyDetails,
+} from "./Routes/index";
 import { ScrollToTop } from "./Routes/index";
 import { Login, Register, LoginAsSeller } from "./Routes/index";
-
 
 function App() {
   return (
@@ -20,7 +29,6 @@ function App() {
               </Layout>
             }
           />
-
           {/* AUCTION PAGE */}
           <Route
             path="/auction"
@@ -32,9 +40,8 @@ function App() {
               </Layout>
             }
           />
-
-           {/* UpComing AUCTION PAGE */}
-           <Route
+          {/* UpComing AUCTION PAGE */}
+          <Route
             path="/auction/upcoming"
             element={
               <Layout>
@@ -43,7 +50,8 @@ function App() {
                 </div>
               </Layout>
             }
-          /> {/* Past AUCTION PAGE */}
+          />{" "}
+          {/* Past AUCTION PAGE */}
           <Route
             path="/auction/past"
             element={
@@ -54,7 +62,16 @@ function App() {
               </Layout>
             }
           />
-
+          <Route
+            path="/property/:id"
+            element={
+              <Layout>
+                <div className="mt-24">
+                  <PropertyDetails />
+                </div>
+              </Layout>
+            }
+          />
           {/* How To Bid PAGE */}
           <Route
             path="/how-to-bid"
@@ -66,8 +83,8 @@ function App() {
               </Layout>
             }
           />
-           {/* How To Contact Us PAGE */}
-           <Route
+          {/* How To Contact Us PAGE */}
+          <Route
             path="/contact"
             element={
               <Layout>
@@ -77,7 +94,6 @@ function App() {
               </Layout>
             }
           />
-
           {/* FAQ */}
           <Route
             path="/faq"
@@ -87,7 +103,6 @@ function App() {
               </Layout>
             }
           />
-
           {/* LOGIN IN PAGE */}
           <Route
             path="/login"
@@ -97,7 +112,6 @@ function App() {
               </Layout>
             }
           />
-
           {/* REGISTER PAGE */}
           <Route
             path="/register"
@@ -107,7 +121,6 @@ function App() {
               </Layout>
             }
           />
-
           {/* Seller Login Page */}
           <Route
             path="/seller/login"
@@ -117,6 +130,7 @@ function App() {
               </Layout>
             }
           />
+          
         </Routes>
       </BrowserRouter>
     </>

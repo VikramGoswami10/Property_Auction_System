@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { MdFavoriteBorder } from "react-icons/md";
 import { auctionData } from "../../Utils/Data";
+import { useNavigate } from "react-router-dom";
 
 export const AuctionPage = () => {
   const [sortBy, setSortBy] = useState("Most Recent");
@@ -10,6 +11,7 @@ export const AuctionPage = () => {
   const [maxPrice, setMaxPrice] = useState(80000000);
   const [selectedPrice, setSelectedPrice] = useState(maxPrice);
   const [selectedPropertyType, setSelectedPropertyType] = useState("Property Sub Type");
+  const navigate = useNavigate();
 
   return (
     <div className="bg-gray-100 min-h-screen px-6 py-6">
@@ -161,7 +163,9 @@ export const AuctionPage = () => {
 
               {/* Action Buttons */}
               <div className="flex justify-between items-center mt-4">
-                <button className="bg-primary text-white px-4 py-2 rounded-md">Interested?</button>
+              <button className="bg-primary text-white px-4 py-2 rounded-md" onClick={() => navigate(`/property/${auction.id}`)}>
+                Interested?
+              </button>
                 <div className="flex gap-3 text-gray-600">
                   <MdFavoriteBorder size={24} className="cursor-pointer hover:text-red-500" />
                 </div>
@@ -173,5 +177,3 @@ export const AuctionPage = () => {
     </div>
   );
 };
-
-

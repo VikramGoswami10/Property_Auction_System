@@ -1,6 +1,9 @@
 // Home Section
 export { Home } from "../Screens/Home/Home"; 
 
+// Property Details
+export { PropertyDetails } from "../Components/Pages/PropertyDetails" ;  
+
 // Header Section
 export { HowToBid } from "../Components/Pages/HowToBid";
 export {AuctionPage} from "../Components/Pages/AuctionPage";

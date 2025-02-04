@@ -345,6 +345,58 @@ export const processList = [
       image: "https://5.imimg.com/data5/BE/CR/XD/SELLER-27323816/4-bhk-flat-sale-service-500x500.jpg",
     },
   ];
+
+  export const propertyData = [
+    {
+      id: 1,
+      title: "3 BHK Flat in Mumbai",
+      image: "https://oceaninfra.co/wp-content/uploads/2023/10/3-BHK-Flat-Sale-in-Thane-1-2-BHK-Flat-in-Thane-Ocean-Infra.webp",
+      bank: "HDFC Bank",
+      possession: "Ready to Move",
+      price: "₹ 85,00,000",
+      bankPropertyId: "HDFC123456",
+      currentBid: 8000000,  // Current bid price for the property
+      bprice: 8000000,  // Starting price for bidding (this is used as the initial bid in the PropertyDetails component)
+      bidIncrement: 50000,
+      extraImages: [
+        "https://5.imimg.com/data5/BE/CR/XD/SELLER-27323816/4-bhk-flat-sale-service-500x500.jpg",  // Add actual URLs for extra images
+        "https://5.imimg.com/data5/BE/CR/XD/SELLER-27323816/4-bhk-flat-sale-service-500x500.jpg",
+        "https://5.imimg.com/data5/BE/CR/XD/SELLER-27323816/4-bhk-flat-sale-service-500x500.jpg"
+      ],
+      timeLeft: "4h 28m 38s",
+      endDate: "4th Feb 2025 13:02",
+      biddingHistory: [
+        { user: "Bidder 1", amount: "₹ 80,00,000", date: "03/02/25 14:32:13" },
+        { user: "Bidder 2", amount: "₹ 79,50,000", date: "03/02/25 14:20:10" }
+      ],
+      description: `This stunning 3BHK flat in Mumbai is available for auction. The property includes a spacious living room, modular kitchen, and balconies with a beautiful view of the city skyline.`,
+    },
+    {
+      id: 2,
+      title: "Luxury Villa in Goa",
+      image: "https://5.imimg.com/data5/BE/CR/XD/SELLER-27323816/4-bhk-flat-sale-service-500x500.jpg",
+      bank: "ICICI Bank",
+      possession: "Under Construction",
+      price: "₹ 1.5 Cr",
+      bankPropertyId: "ICICI789012",
+      currentBid: 14000000,  // Current bid price for the property
+      bprice: 14000000,  // Starting price for bidding (this is used as the initial bid in the PropertyDetails component)
+      bidIncrement: 100000,
+      extraImages: [
+        "https://oceaninfra.co/wp-content/uploads/2023/10/3-BHK-Flat-Sale-in-Thane-1-2-BHK-Flat-in-Thane-Ocean-Infra.webp",  // Add actual URLs for extra images
+        "https://oceaninfra.co/wp-content/uploads/2023/10/3-BHK-Flat-Sale-in-Thane-1-2-BHK-Flat-in-Thane-Ocean-Infra.webp",
+        "https://oceaninfra.co/wp-content/uploads/2023/10/3-BHK-Flat-Sale-in-Thane-1-2-BHK-Flat-in-Thane-Ocean-Infra.webp"
+      ],
+      timeLeft: "8h 15m 20s",
+      endDate: "5th Feb 2025 18:00",
+      biddingHistory: [
+        { user: "Bidder 3", amount: "₹ 1.4 Cr", date: "03/02/25 11:45:00" },
+        { user: "Bidder 4", amount: "₹ 1.35 Cr", date: "03/02/25 10:20:50" }
+      ],
+      description: `A beautiful luxury villa located near Goa beachside, offering top-notch amenities and serene surroundings. A perfect investment for holiday stays and rentals.`,
+    }
+  ];
+  
   
 
   export const faqData = [
