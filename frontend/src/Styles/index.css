@@ -114,3 +114,28 @@ body {
 .floating {
   animation: float 3s ease-in-out infinite;
 }
+
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  width: 180px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  display: none;
+}
+
+.group:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdown-menu li:hover {
+  background: #f3f3f3;
+}

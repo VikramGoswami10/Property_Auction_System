@@ -1,40 +1,36 @@
 export const menulists = [
-    {
-      id: 1,
-      path: "/",
-      link: "Home ",
-    },
-    {
-      id: 2,
-      path: "/auction",
-      link: "Auction",
-    },
-    {
-      id: 3,
-      path: "/how-to-bid",
-      link: "How To Bid",
-    },
-    {
-      id: 4,
-      path: "/contact",
-      link: "Contact Us",
-      
-      
-    },
-   
-    {
-      id: 5,
-      path: "/",
-      // path: "/about",
-      link: "About",
-    },
-     // {
-    //   id: 6,
-    //   path: "/",
-    //   // path: "/search",
-    //   link: "Search",
-    // },
-  ];
+  {
+    id: 1,
+    path: "/",
+    link: "Home ",
+  },
+  {
+    id: 2,
+    link: "Property",
+    submenu: [
+      { id: "1", path: "/auction", link: "All Auctions" },
+      { id: "2", path: "/auction/upcoming", link: "Upcoming Auctions" },
+      { id: "3", path: "/auction/past", link: "Past Auctions" }
+    ]
+  },
+  {
+    id: 3,
+    path: "/how-to-bid",
+    link: "How To Bid",
+  },
+  {
+    id: 4,
+    path: "/contact",
+    link: "Contact Us",
+    
+  },
+  {
+    id: 5,
+    path: "/faq",
+    link: "FAQ",
+  }
+];
+
   
   //CATEGORY LIST -->
   export const categorylists = [
@@ -350,3 +346,30 @@ export const processList = [
     },
   ];
   
+
+  export const faqData = [
+    {
+      question: "How do I register for an auction?",
+      answer: "You can register by creating an account on our platform. Once registered, you need to verify your identity before participating in auctions."
+    },
+    {
+      question: "How does the bidding process work?",
+      answer: "After selecting a property, you can place a bid. If your bid is the highest when the auction ends, you win the property."
+    },
+    {
+      question: "Is there a deposit required before bidding?",
+      answer: "No, we do not charge an upfront deposit. However, the winning bidder must complete the payment process within the given time frame."
+    },
+    {
+      question: "What happens if I win the auction?",
+      answer: "If you win, you will receive an email with further payment and documentation instructions. The final contract will be signed, and ownership will be transferred after full payment."
+    },
+    {
+      question: "What are the accepted payment methods?",
+      answer: "We accept bank transfers, credit/debit cards, and UPI payments. The details will be provided upon winning an auction."
+    },
+    {
+      question: "Can I visit the property before bidding?",
+      answer: "Yes, you can schedule a visit before bidding. Contact our support team to arrange a viewing."
+    }
+  ];

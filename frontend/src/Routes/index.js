@@ -4,8 +4,10 @@ export { Home } from "../Screens/Home/Home";
 // Header Section
 export { HowToBid } from "../Components/Pages/HowToBid";
 export {AuctionPage} from "../Components/Pages/AuctionPage";
+export {UpcomingAuctionPage } from "../Components/Pages/UpcomingAuctionPage";
+export {PastAuctionPage} from "../Components/Pages/PastAuctionPage";
 export { default as ContactUs } from "../Components/Pages/ContactUs";
-
+export { FAQ } from "../Components/Pages/FAQ";  
 
 // Auth Section
 export { LoginAsSeller } from "../Screens/auth/LoginAsSeller";

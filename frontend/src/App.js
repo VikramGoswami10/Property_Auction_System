@@ -1,6 +1,6 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Home, HowToBid, Layout , AuctionPage , ContactUs } from "./Routes/index";
+import { Home, HowToBid, Layout , AuctionPage , ContactUs , FAQ , UpcomingAuctionPage , PastAuctionPage} from "./Routes/index";
 import { ScrollToTop } from "./Routes/index";
 import { Login, Register, LoginAsSeller } from "./Routes/index";
 
@@ -33,6 +33,28 @@ function App() {
             }
           />
 
+           {/* UpComing AUCTION PAGE */}
+           <Route
+            path="/auction/upcoming"
+            element={
+              <Layout>
+                <div className="mt-24">
+                  <UpcomingAuctionPage />
+                </div>
+              </Layout>
+            }
+          /> {/* Past AUCTION PAGE */}
+          <Route
+            path="/auction/past"
+            element={
+              <Layout>
+                <div className="mt-24">
+                  <PastAuctionPage />
+                </div>
+              </Layout>
+            }
+          />
+
           {/* How To Bid PAGE */}
           <Route
             path="/how-to-bid"
@@ -52,6 +74,16 @@ function App() {
                 <div className="mt-24">
                   <ContactUs />
                 </div>
+              </Layout>
+            }
+          />
+
+          {/* FAQ */}
+          <Route
+            path="/faq"
+            element={
+              <Layout>
+                <FAQ />
               </Layout>
             }
           />
