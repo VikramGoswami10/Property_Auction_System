@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { 
-  LayoutDashboard, Users, Gavel, Package, LogOut, 
+  LayoutDashboard, Users, Gavel, LogOut, 
   Plus, Pencil, Trash2, Search
 } from 'lucide-react';
 import Sidebar from '../Common/Sidebar';

@@ -1,4 +1,3 @@
-import {  FaGoogle } from "react-icons/fa";
 import { Caption, Container, CustomNavLink, PrimaryButton, Title } from "../../Routes";
 import { commonClassNameOfInput } from "../../Components/Common/Design";
 
@@ -48,15 +47,6 @@ export const Login = () => {
             <Caption>I agree to the Terms & Policy</Caption>
           </div>
           <PrimaryButton className="w-full rounded-none my-5">LOGIN</PrimaryButton>
-          <div className="text-center border py-4 rounded-lg mt-4">
-            <Title>OR SIGNIN WITH</Title>
-            <div className="flex items-center justify-center gap-5 mt-5">
-              <button className="flex items-center gap-2 bg-red-500 text-white p-3 px-5 rounded-sm">
-                <FaGoogle />
-                <p className="text-sm">SIGNIN WITH GOOGLE</p>
-              </button>
-            </div>
-          </div>
           <p className="text-center mt-5">
             By clicking the signup button, you create a account, and you agree to PropertyAuction <span className="text-green underline">Terms & Conditions</span> &
             <span className="text-green underline"> Privacy Policy </span> .

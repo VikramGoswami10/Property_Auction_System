@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { MdFavoriteBorder } from "react-icons/md";
-import { pastAuctions } from "../../Utils/Data";
+import { AuctionData } from "../../Utils/Data"; // ✅ Fixed Import
+import { useNavigate } from "react-router-dom";
 
 export const PastAuctionPage = () => {
   const [sortBy, setSortBy] = useState("Most Recent");
@@ -10,16 +11,16 @@ export const PastAuctionPage = () => {
   const [maxPrice, setMaxPrice] = useState(80000000);
   const [selectedPrice, setSelectedPrice] = useState(maxPrice);
   const [selectedPropertyType, setSelectedPropertyType] = useState("Property Sub Type");
+  const navigate = useNavigate();
+
+  // Filter only past auctions
+  const pastAuctions = AuctionData.filter((auction) => auction.status === "Past");
 
   return (
     <div className="bg-gray-100 min-h-screen px-6 py-6">
       {/* Search and Filters - Centered */}
       <div className="bg-primary p-4 rounded-lg flex flex-col md:flex-row items-center justify-center gap-4 relative">
-        <input
-          type="text"
-          placeholder="Enter City"
-          className="p-3 w-60 rounded-full text-black focus:outline-none"
-        />
+        <input type="text" placeholder="Enter City" className="p-3 w-60 rounded-full text-black focus:outline-none" />
         <select className="p-3 w-48 rounded-full text-black focus:outline-none">
           <option>Residential</option>
           <option>Commercial</option>
@@ -57,23 +58,15 @@ export const PastAuctionPage = () => {
 
         {/* Budget Dropdown */}
         <div className="relative">
-          <button
-            onClick={() => setIsBudgetOpen(!isBudgetOpen)}
-            className="p-3 w-48 rounded-full bg-white text-primary font-medium"
-          >
+          <button onClick={() => setIsBudgetOpen(!isBudgetOpen)} className="p-3 w-48 rounded-full bg-white text-primary font-medium">
             Budget ▼
           </button>
 
           {isBudgetOpen && (
             <div className="absolute bg-white shadow-lg p-4 rounded-md w-80 top-12 right-0 z-50">
               <h3 className="font-semibold mb-2">Budget</h3>
-
               <div className="flex items-center gap-3">
-                <select
-                  value={minPrice}
-                  onChange={(e) => setMinPrice(Number(e.target.value))}
-                  className="p-2 border rounded-md text-black w-1/2"
-                >
+                <select value={minPrice} onChange={(e) => setMinPrice(Number(e.target.value))} className="p-2 border rounded-md text-black w-1/2">
                   <option value="0">₹ 0</option>
                   <option value="500000">₹ 5 Lakh</option>
                   <option value="1000000">₹ 10 Lakh</option>
@@ -82,11 +75,7 @@ export const PastAuctionPage = () => {
 
                 <span>to</span>
 
-                <select
-                  value={maxPrice}
-                  onChange={(e) => setMaxPrice(Number(e.target.value))}
-                  className="p-2 border rounded-md text-black w-1/2"
-                >
+                <select value={maxPrice} onChange={(e) => setMaxPrice(Number(e.target.value))} className="p-2 border rounded-md text-black w-1/2">
                   <option value="5000000">₹ 50 Lakh</option>
                   <option value="10000000">₹ 1 Crore</option>
                   <option value="50000000">₹ 5 Crore</option>
@@ -113,16 +102,10 @@ export const PastAuctionPage = () => {
 
       {/* Sorting Section */}
       <div className="mt-6 flex justify-between items-center">
-        <h2 className="text-lg font-semibold">
-          {pastAuctions.length} results | {selectedPropertyType} Properties Sold
-        </h2>
+        <h2 className="text-lg font-semibold">{pastAuctions.length} results | {selectedPropertyType} Properties Sold</h2>
         <div className="flex items-center gap-2">
           <span className="text-gray-600">Sort By:</span>
-          <select
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value)}
-            className="p-2 border rounded-md text-black"
-          >
+          <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="p-2 border rounded-md text-black">
             <option>Most Recent</option>
             <option>Lowest Price</option>
             <option>Highest Price</option>
@@ -136,7 +119,7 @@ export const PastAuctionPage = () => {
           <div key={auction.id} className="bg-white shadow-md rounded-lg p-4 flex">
             {/* Left - Image Section */}
             <div className="w-1/3">
-              <img src={auction.image} alt="Property" className="rounded-lg w-full h-44 object-cover" />
+              <img src={auction.images[0]} alt="Property" className="rounded-lg w-full h-44 object-cover" />
             </div>
 
             {/* Right - Property Details */}
@@ -147,21 +130,15 @@ export const PastAuctionPage = () => {
                 <strong>Possession Type:</strong> {auction.possession}
               </div>
 
-              <p className="text-gray-600">
-                <span className="font-semibold">🏦 {auction.bank}</span>
-              </p>
-
               <p className="text-lg font-semibold text-red-500">
                 {auction.price} <span className="text-xs">(**sold price)</span>
               </p>
 
-              <p className="text-sm text-gray-500">
-                Bank Property ID: {auction.bankPropertyId}
-              </p>
-
               {/* Action Buttons */}
               <div className="flex justify-between items-center mt-4">
-                <button className="bg-primary text-white px-4 py-2 rounded-md">View Details</button>
+                <button className="bg-primary text-white px-4 py-2 rounded-md" onClick={() => navigate(`/property/${auction.id}`)}>
+                  View Details
+                  </button>
                 <div className="flex gap-3 text-gray-600">
                   <MdFavoriteBorder size={24} className="cursor-pointer hover:text-red-500" />
                 </div>

@@ -1,22 +1,27 @@
 import { Container, Heading } from "../../Routes";
-import { upcomingAuctions } from "../../Utils/Data";
+import { AuctionData } from "../../Utils/Data";
 import { ProductCard } from "../cards/ProductCard";
+
+
 export const UpcomingAuction = () => {
+  // Filter only upcoming auctions
+  const upcomingAuctions = AuctionData.filter(auction => auction.status === "Upcoming");
+
   return (
     <>
       <section className="process py-12">
-          <Container>
-                  <Heading
-                    title="Upcoming Auctions"
-                    subtitle="Explore on the world's best & largest Bidding marketplace with our beautiful Bidding products. We want to be a part of your smile, success and future growth."
-                  />
-        
-                  <div className="grid grid-cols-1 md:grid-cols-4 gap-8 my-8">
-                    {upcomingAuctions?.slice(0, 12)?.map((item, index) => (
-                      <ProductCard item={item} key={index + 1} />
-                    ))}
-                  </div>
-                </Container>
+        <Container>
+          <Heading
+            title="Upcoming Auctions"
+            subtitle="Discover exclusive properties that will soon be available for bidding."
+          />
+
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 my-8">
+            {upcomingAuctions.map((auction) => (
+              <ProductCard auction={auction} key={auction.id} />
+            ))}
+          </div>
+        </Container>
       </section>
     </>
   );

@@ -1,8 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { AiOutlineMenu, AiOutlineClose, AiOutlineDown } from "react-icons/ai";
-import { Container, CustomNavLink, CustomNavLinkList, ProfileCard } from "../../Routes";
-import { User1 } from "../../Routes";
+import { Container, CustomNavLink, CustomNavLinkList, ProfileCard , User1 } from "../../Routes";
 import { menulists } from "../../Utils/Data";
 
 export const Header = () => {

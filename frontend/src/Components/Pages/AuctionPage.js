@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { MdFavoriteBorder } from "react-icons/md";
-import { auctionData } from "../../Utils/Data";
+import { AuctionData } from "../../Utils/Data";  // ✅ Fixed Import
 import { useNavigate } from "react-router-dom";
 
 export const AuctionPage = () => {
@@ -12,6 +12,9 @@ export const AuctionPage = () => {
   const [selectedPrice, setSelectedPrice] = useState(maxPrice);
   const [selectedPropertyType, setSelectedPropertyType] = useState("Property Sub Type");
   const navigate = useNavigate();
+
+  // ✅ Filter only Ongoing Auctions
+  const ongoingAuctions = AuctionData.filter(item => item.status === "Ongoing");
 
   return (
     <div className="bg-gray-100 min-h-screen px-6 py-6">
@@ -116,7 +119,7 @@ export const AuctionPage = () => {
       {/* Sorting Section */}
       <div className="mt-6 flex justify-between items-center">
         <h2 className="text-lg font-semibold">
-          {auctionData.length} results | {selectedPropertyType} Properties for Sale
+          {ongoingAuctions.length} results | {selectedPropertyType} Properties for Sale
         </h2>
         <div className="flex items-center gap-2">
           <span className="text-gray-600">Sort By:</span>
@@ -134,11 +137,11 @@ export const AuctionPage = () => {
 
       {/* Auction List */}
       <div className="mt-6 space-y-6">
-        {auctionData.map((auction) => (
+        {ongoingAuctions.map((auction) => (
           <div key={auction.id} className="bg-white shadow-md rounded-lg p-4 flex">
             {/* Left - Image Section */}
             <div className="w-1/3">
-              <img src={auction.image} alt="Property" className="rounded-lg w-full h-44 object-cover" />
+              <img src={auction.images[0]} alt="Property" className="rounded-lg w-full h-44 object-cover" />
             </div>
 
             {/* Right - Property Details */}
@@ -149,23 +152,18 @@ export const AuctionPage = () => {
                 <strong>Possession Type:</strong> {auction.possession}
               </div>
 
-              <p className="text-gray-600">
-                <span className="font-semibold">🏦 {auction.bank}</span>
-              </p>
-
               <p className="text-lg font-semibold text-red-500">
                 {auction.price} <span className="text-xs">(**indicative price)</span>
               </p>
 
-              <p className="text-sm text-gray-500">
-                Bank Property ID: {auction.bankPropertyId}
-              </p>
-
               {/* Action Buttons */}
               <div className="flex justify-between items-center mt-4">
-              <button className="bg-primary text-white px-4 py-2 rounded-md" onClick={() => navigate(`/property/${auction.id}`)}>
-                Interested?
-              </button>
+                <button
+                  className="bg-primary text-white px-4 py-2 rounded-md"
+                  onClick={() => navigate(`/property/${auction.id}`)}
+                >
+                  Interested?
+                </button>
                 <div className="flex gap-3 text-gray-600">
                   <MdFavoriteBorder size={24} className="cursor-pointer hover:text-red-500" />
                 </div>

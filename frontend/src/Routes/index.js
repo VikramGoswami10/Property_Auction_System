@@ -40,11 +40,11 @@ export { Process } from "../Components/hero/Process";
 export { PastAuction } from "../Components/hero/PastAuction";
 
 // Data Util
-export { categorylists } from "../Utils/Data";
-export { productlists } from "../Utils/Data";
-export { upcomingAuctions } from "../Utils/Data";
-export { processList } from "../Utils/Data";
-export { pastAuctions } from "../Utils/Data";
+// export { categorylists } from "../Utils/Data";
+// export { productlists } from "../Utils/Data";
+// export { upcomingAuctions } from "../Utils/Data";
+// export { processList } from "../Utils/Data";
+// export { pastAuctions } from "../Utils/Data";
 
 // Other Utility
 export { ScrollToTop } from "../../src/Utils/ScrollToTop";

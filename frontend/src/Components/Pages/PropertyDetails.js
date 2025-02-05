@@ -1,17 +1,18 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { propertyData } from "../../Utils/Data";
+import { AuctionData } from "../../Utils/Data"; // ✅ Fixed Import
 import { Dialog } from "@headlessui/react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa"; // For image slider
 
 export const PropertyDetails = () => {
   const { id } = useParams();
-  const property = propertyData.find((item) => item.id.toString() === id);
+  const property = AuctionData.find((item) => item.id.toString() === id);
 
-  // Move hooks to top to avoid conditional rendering issues
-  const [currentBid, setCurrentBid] = useState(property?.bprice || 0);
-  const [bidAmount, setBidAmount] = useState((property?.bprice || 0) + 1000);
-  const [bidHistory, setBidHistory] = useState([]);
+ 
+
+  const [currentBid, setCurrentBid] = useState(property?.currentBid || 0);
+  const [bidAmount, setBidAmount] = useState((property?.currentBid || 0) + property?.bidIncrement);
+  const [bidHistory, setBidHistory] = useState(property?.biddingHistory || []);
   const [helpOpen, setHelpOpen] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
 
@@ -25,37 +26,22 @@ export const PropertyDetails = () => {
   });
 
   if (!property) {
-    return (
-      <div className="text-center text-red-500 mt-10">Property not found</div>
-    );
+    return <div className="text-center text-red-500 mt-10">Property not found</div>;
   }
 
-  const increaseBid = () => setBidAmount((prev) => prev + 1000);
-  const decreaseBid = () =>
-    setBidAmount((prev) => Math.max(currentBid, prev - 1000));
+  const increaseBid = () => setBidAmount((prev) => prev + property?.bidIncrement);
+  const decreaseBid = () => setBidAmount((prev) => Math.max(currentBid, prev - property?.bidIncrement));
 
   const placeBid = () => {
     setCurrentBid(bidAmount);
-    setBidHistory([
-      { user: "You", amount: bidAmount, date: new Date().toLocaleString() },
-      ...bidHistory,
-    ]);
+    setBidHistory([{ user: "You", amount: bidAmount, date: new Date().toLocaleString() }, ...bidHistory]);
   };
 
-  const nextImage = () =>
-    setCurrentImage((prev) => (prev + 1) % property.extraImages.length);
-  const prevImage = () =>
-    setCurrentImage(
-      (prev) =>
-        (prev - 1 + property.extraImages.length) % property.extraImages.length
-    );
+  const nextImage = () => setCurrentImage((prev) => (prev + 1) % property.images.length);
+  const prevImage = () => setCurrentImage((prev) => (prev - 1 + property.images.length) % property.images.length);
 
-  // Toggle details in the help modal
   const toggleDetails = (section) => {
-    setShowDetails((prevState) => ({
-      ...prevState,
-      [section]: !prevState[section],
-    }));
+    setShowDetails((prevState) => ({ ...prevState, [section]: !prevState[section] }));
   };
 
   return (
@@ -65,7 +51,7 @@ export const PropertyDetails = () => {
         {/* Image Slider */}
         <div className="md:w-2/3 relative">
           <img
-            src={property.extraImages[currentImage]}
+            src={property.images[currentImage]}
             alt="Property"
             className="rounded-lg w-full h-96 object-cover"
           />
@@ -86,47 +72,66 @@ export const PropertyDetails = () => {
         {/* Bidding Section */}
         <div className="md:w-1/3 bg-white p-4 rounded-lg shadow-md">
           <h2 className="text-lg font-semibold">Current Bid</h2>
-          <p className="text-3xl font-bold text-green-600">
-            ₹{currentBid.toLocaleString()}
-          </p>
+          <p className="text-3xl font-bold text-green-600">₹{currentBid.toLocaleString()}</p>
           <p className="text-red-500">(Reserve Not Met)</p>
 
           <div className="flex items-center gap-2 mt-4">
-            <button
-              onClick={decreaseBid}
-              className="px-3 py-1 bg-gray-300 rounded-full"
-            >
-              -
-            </button>
+            <button onClick={decreaseBid} className="px-3 py-1 bg-gray-300 rounded-full">-</button>
             <input
               type="text"
               value={`₹${bidAmount.toLocaleString()}`}
               readOnly
               className="text-center font-semibold w-28 border rounded-lg py-1"
             />
-            <button
-              onClick={increaseBid}
-              className="px-3 py-1 bg-gray-300 rounded-full"
-            >
-              +
-            </button>
+            <button onClick={increaseBid} className="px-3 py-1 bg-gray-300 rounded-full">+</button>
           </div>
 
-          <button
-            onClick={placeBid}
-            className="bg-blue-500 text-white w-full py-2 rounded-lg mt-4"
-          >
+          <button onClick={placeBid} className="bg-blue-500 text-white w-full py-2 rounded-lg mt-4">
             Place Bid
           </button>
 
-
-          <button
-            onClick={() => setHelpOpen(true)}
-            className="bg-gray-700 text-white w-full py-2 rounded-lg mt-2"
-          >
+          <button onClick={() => setHelpOpen(true)} className="bg-gray-700 text-white w-full py-2 rounded-lg mt-2">
             Help on Bidding
           </button>
-          {/* Help on Bidding Modal */}
+        </div>
+      </div>
+
+      {/* Description Section (Full Width) */}
+      <div className="mt-6 bg-white p-4 rounded-lg shadow-md">
+        <h3 className="text-lg font-semibold">Description</h3>
+        <p className="mt-2 text-gray-600">{property.description}</p>
+      </div>
+
+      {/* Bidding History (Full Width) */}
+      <div className="mt-6 bg-white p-4 rounded-lg shadow-md">
+        <h3 className="text-lg font-semibold">Bidding History</h3>
+        <table className="w-full mt-3 border-collapse border border-gray-300">
+          <thead>
+            <tr className="bg-gray-200">
+              <th className="border p-2">User</th>
+              <th className="border p-2">Amount</th>
+              <th className="border p-2">Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {bidHistory.length > 0 ? (
+              bidHistory.map((bid, index) => (
+                <tr key={index}>
+                  <td className="border p-2">{bid.user}</td>
+                  <td className="border p-2">₹{bid.amount.toLocaleString()}</td>
+                  <td className="border p-2">{bid.date}</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="3" className="text-center p-2 text-gray-500">No bids yet</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Help on Bidding Modal */}
       <Dialog open={helpOpen} onClose={() => setHelpOpen(false)} className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
         <div className="bg-white rounded-lg p-6 w-2/3 max-w-2xl">
           <h2 className="text-2xl font-bold">Help on Bidding</h2>
@@ -224,46 +229,6 @@ export const PropertyDetails = () => {
           </button>
         </div>
       </Dialog>
-
-      
-        </div>
-      </div>
-      {/* Description Section (Full Width) */}
-      <div className="mt-6 bg-white p-4 rounded-lg shadow-md">
-        <h3 className="text-lg font-semibold">Description</h3>
-        <p className="mt-2 text-gray-600">{property.description}</p>
-      </div>
-
-      {/* Bidding History (Full Width) */}
-      <div className="mt-6 bg-white p-4 rounded-lg shadow-md">
-        <h3 className="text-lg font-semibold">Bidding History</h3>
-        <table className="w-full mt-3 border-collapse border border-gray-300">
-          <thead>
-            <tr className="bg-gray-200">
-              <th className="border p-2">User</th>
-              <th className="border p-2">Amount</th>
-              <th className="border p-2">Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            {bidHistory.length > 0 ? (
-              bidHistory.map((bid, index) => (
-                <tr key={index}>
-                  <td className="border p-2">{bid.user}</td>
-                  <td className="border p-2">₹{bid.amount.toLocaleString()}</td>
-                  <td className="border p-2">{bid.date}</td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="3" className="text-center p-2 text-gray-500">
-                  No bids yet
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
     </div>
   );
 };
