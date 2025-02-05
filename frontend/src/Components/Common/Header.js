@@ -117,7 +117,7 @@ export const Header = () => {
             </CustomNavLink>
 
             {/* Profile */}
-            <CustomNavLink href="/">
+            <CustomNavLink href="/admin">
               <ProfileCard>
                 <img src={User1} alt="User" className="w-full h-full object-cover" />
               </ProfileCard>
