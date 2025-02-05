@@ -8,7 +8,7 @@ export const menulists = [
     id: 2,
     link: "Property",
     submenu: [
-      { id: "1", path: "/auction", link: "All Auctions" },
+      { id: "1", path: "/auction", link: "Ongoing Auctions" },
       { id: "2", path: "/auction/upcoming", link: "Upcoming Auctions" },
       { id: "3", path: "/auction/past", link: "Past Auctions" }
     ]

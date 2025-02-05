@@ -11,7 +11,7 @@ export const ProductCard = ({ item = {} }) => {  // ✅ Ensure item is always de
   return (
     <div className="bg-white shadow-s1 rounded-xl p-3">
       <div className="h-56 relative overflow-hidden">
-        <NavLink to={`/details/${item?._id || 0}`}>
+        <NavLink to={`/details/${item?.id || 0}`}>
           <img
             src={item?.image || "https://via.placeholder.com/300"}
             alt={item?.title || "No Image"}
@@ -46,7 +46,7 @@ export const ProductCard = ({ item = {} }) => {  // ✅ Ensure item is always de
         <hr className="mb-3" />
 
         <div className="flex items-center justify-between mt-3">
-          <PrimaryButton className="rounded-lg text-sm" onClick={() => navigate(`/property/${item?._id || 0}`)}>
+          <PrimaryButton className="rounded-lg text-sm" onClick={() => navigate(`/property/${item?.id || 0}`)}>
             Place Bid
           </PrimaryButton>
           <PrimaryButton className="rounded-lg px-4 py-3">
