@@ -12,6 +12,12 @@ export {PastAuctionPage} from "../Components/Pages/PastAuctionPage";
 export { default as ContactUs } from "../Components/Pages/ContactUs";
 export { FAQ } from "../Components/Pages/FAQ";  
 
+// Dashboards
+// export { AdminDashboard } from "../Components/Pages/Dashboard/AdminDashboard";
+
+// export { default as BuyerDashboard } from "../Components/Pages/Dashboard/BuyerDashboard";
+// export { default as SellerDashboard } from "../Components/Pages/Dashboard/SellerDashboard";
+
 // Auth Section
 export { LoginAsSeller } from "../Screens/auth/LoginAsSeller";
 export { Register } from "../Screens/auth/Register";

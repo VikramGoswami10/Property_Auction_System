@@ -1,9 +1,12 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import { Container, Title, PrimaryButton } from "../Common/Design";
 
 export const HowToBid = () => {
+  const navigate = useNavigate(); // Initialize navigate function
+
   useEffect(() => {
-    window.scrollTo(0, 0); // Ensure page starts at top when loaded
+    window.scrollTo(0, 0);
   }, []);
 
   return (
@@ -91,7 +94,9 @@ export const HowToBid = () => {
 
         {/* CONTACT BUTTON */}
         <div className="text-center mt-10">
-          <PrimaryButton className="px-6 py-3 text-lg">Contact Support</PrimaryButton>
+          <PrimaryButton className="px-6 py-3 text-lg" onClick={() => navigate("/contact")}>
+          <a href="/contact">Contact Support</a>
+          </PrimaryButton>
         </div>
       </Container>
     </div>

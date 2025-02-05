@@ -13,6 +13,9 @@ import {
 } from "./Routes/index";
 import { ScrollToTop } from "./Routes/index";
 import { Login, Register, LoginAsSeller } from "./Routes/index";
+import AdminDashboard from "./Components/Dashboard/AdminDashboard";
+import BuyerDashboard from "./Components/Dashboard/BuyerDashboard";
+import SellerDashboard from "./Components/Dashboard/SellersDashboard";
 
 function App() {
   return (
@@ -130,7 +133,39 @@ function App() {
               </Layout>
             }
           />
-          
+          {/* ADMIN DASHBOARD */}
+          <Route
+            path="/admin"
+            element={
+              <Layout>
+                <div className="mt-24">
+                  <AdminDashboard />
+                </div>
+              </Layout>
+            }
+          />
+          {/* Buyer DASHBOARD */}
+          <Route
+            path="/buyer"
+            element={
+              <Layout>
+                <div className="mt-24">
+                  <BuyerDashboard />
+                </div>
+              </Layout>
+            }
+          />
+          {/* Seller DASHBOARD */}
+          <Route
+            path="/seller"
+            element={
+              <Layout>
+                <div className="mt-24">
+                  <SellerDashboard />
+                </div>
+              </Layout>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </>
