@@ -86,7 +86,7 @@ function App() {
               </Layout>
             }
           />
-          {/* How To Contact Us PAGE */}
+          {/* Contact Us PAGE */}
           <Route
             path="/contact"
             element={

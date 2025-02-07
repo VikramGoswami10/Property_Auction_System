@@ -8,8 +8,8 @@ import { useNavigate } from 'react-router-dom';
 
 // Mock data
 const mockAuctions = [
-  { id: 1, title: 'Vintage Car', seller: 'John Doe', startPrice: 5000, endDate: '2024-04-01' },
-  { id: 2, title: 'Antique Furniture', seller: 'Jane Smith', startPrice: 2000, endDate: '2024-03-25' },
+  { id: 1, title: 'Vintage Home', seller: 'John Doe', startPrice: 5000, endDate: '2024-04-01' },
+  { id: 2, title: 'Sea Side Vila', seller: 'Jane Smith', startPrice: 2000, endDate: '2024-03-25' },
 ];
 
 const mockUsers = [

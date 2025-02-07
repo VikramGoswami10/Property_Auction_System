@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 const mockAuctions = [
   { 
     id: 1, 
-    title: 'Vintage Car', 
+    title: 'Vintage Home', 
     image: 'https://images.unsplash.com/photo-1567808291548-fc3ee04dbcf0?q=80&w=2074&auto=format&fit=crop',
     currentBid: 5200,
     endDate: '2024-04-01',
@@ -18,7 +18,7 @@ const mockAuctions = [
   },
   { 
     id: 2, 
-    title: 'Antique Furniture',
+    title: 'Sea Side Vila',
     image: 'https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=2070&auto=format&fit=crop',
     currentBid: 2100,
     endDate: '2024-03-25',

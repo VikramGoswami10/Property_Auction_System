@@ -47,7 +47,7 @@ export { PastAuction } from "../Components/hero/PastAuction";
 // export { pastAuctions } from "../Utils/Data";
 
 // Other Utility
-export { ScrollToTop } from "../../src/Utils/ScrollToTop";
+export { ScrollToTop } from "../Utils/ScrollToTop";
 
 // Users
 export const User1 = "https://cdn-icons-png.flaticon.com/128/6997/6997662.png";
