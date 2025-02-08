@@ -1,63 +1,50 @@
 import PropTypes from "prop-types";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { RiAuctionFill } from "react-icons/ri";
 import { GiTakeMyMoney } from "react-icons/gi";
 import { MdOutlineFavorite } from "react-icons/md";
 import { Caption, PrimaryButton, ProfileCard, Title } from "../Common/Design";
 import { NavLink, useNavigate } from "react-router-dom";
 
-export const ProductCard = ({ item = {} }) => {  // ✅ Ensure item is always defined
+export const ProductCard = ({ item }) => {
   const navigate = useNavigate();
+
+  const images = item?.images?.length > 0 ? item.images : [
+    "https://example.com/default1.jpg",
+    "https://example.com/default2.jpg",
+  ]; // ✅ Add real default image URLs
+
+  const settings = { dots: true, infinite: true, speed: 500, slidesToShow: 1, slidesToScroll: 1, autoplay: true, autoplaySpeed: 3000 };
 
   return (
     <div className="bg-white shadow-s1 rounded-xl p-3">
       <div className="h-56 relative overflow-hidden">
-        <NavLink to={`/details/${item?.id || 0}`}>
-          <img
-            src={item?.image || "https://via.placeholder.com/300"}
-            alt={item?.title || "No Image"}
-            className="w-full h-full object-cover rounded-xl hover:scale-105 hover:cursor-pointer transition-transform duration-300 ease-in-out"
-          />
-        </NavLink>
+        <Slider {...settings}>
+          {images.map((img, index) => (
+            <div key={index}>
+              <NavLink to={`/property/${item?.id || 0}`}>
+                <img src={img} alt={`Property Image ${index + 1}`} className="w-full h-56 object-cover rounded-xl" />
+              </NavLink>
+            </div>
+          ))}
+        </Slider>
         <ProfileCard className="shadow-s1 absolute right-3 bottom-3">
           <RiAuctionFill size={22} className="text-green" />
         </ProfileCard>
       </div>
-      
       <div className="details mt-4">
         <Title className="uppercase">{item?.title || "No Title"}</Title>
         <hr className="mt-3" />
         <div className="flex items-center justify-between py-4">
-          <div className="flex items-center gap-5">
-            <RiAuctionFill size={40} className="text-green" />
-            <div>
-              <Caption className="text-green">Current Bid</Caption>
-              <Title>${item?.biddingPrice || "N/A"}</Title>
-            </div>
-          </div>
-          <div className="w-[1px] h-10 bg-gray-300"></div>
-          <div className="flex items-center gap-5">
-            <GiTakeMyMoney size={40} className="text-red-500" />
-            <div>
-              <Caption className="text-red-500">Buy Now</Caption>
-              <Title>${item?.price || "N/A"}</Title>
-            </div>
-          </div>
+          <Caption className="text-green">Current Bid: ₹{item?.currentBid || "N/A"}</Caption>
+          <Caption className="text-red-500">Buy Now: ₹{item?.price || "N/A"}</Caption>
         </div>
-        <hr className="mb-3" />
-
-        <div className="flex items-center justify-between mt-3">
-          <PrimaryButton className="rounded-lg text-sm" onClick={() => navigate(`/property/${item?.id || 0}`)}>
-            Place Bid
-          </PrimaryButton>
-          <PrimaryButton className="rounded-lg px-4 py-3">
-            <MdOutlineFavorite size={20} />
-          </PrimaryButton>
-        </div>
+        <PrimaryButton onClick={() => navigate(`/property/${item?.id || 0}`)}>Place Bid</PrimaryButton>
       </div>
     </div>
   );
 };
 
-ProductCard.propTypes = {
-  item: PropTypes.object,
-};
+ProductCard.propTypes = { item: PropTypes.object };

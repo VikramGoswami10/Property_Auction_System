@@ -32,6 +32,8 @@ function App() {
               </Layout>
             }
           />
+    
+
           {/* AUCTION PAGE */}
           <Route
             path="/auction"

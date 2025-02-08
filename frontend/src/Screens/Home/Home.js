@@ -1,5 +1,5 @@
 import { ProductList } from "../../Components/hero/ProductList";
-import { Hero, UpcomingAuction, Process, PastAuction} from "../../Routes";
+import { Hero, UpcomingAuction, Process} from "../../Routes";
 import { CategorySlider } from "../../Routes";
 
 export const Home = () => {
@@ -9,9 +9,9 @@ export const Home = () => {
             <Hero />
             <CategorySlider />
             <ProductList />
-            <UpcomingAuction />
             <Process />
-            <PastAuction />
+            <UpcomingAuction />
+            {/* <PastAuction /> */}
         </>
     );
 }

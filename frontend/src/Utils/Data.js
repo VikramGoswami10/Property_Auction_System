@@ -1,3 +1,6 @@
+// Fetch auction data dynamically
+export { useAuctionData } from "../hooks/useAuctionData";
+
 export const menulists = [
   {
     id: 1,
@@ -8,9 +11,9 @@ export const menulists = [
     id: 2,
     link: "Property",
     submenu: [
-      { id: "1", path: "/auction", link: "Ongoing Auctions" },
+      { id: "1", path: "/auction", link: "Live Auctions" },
       { id: "2", path: "/auction/upcoming", link: "Upcoming Auctions" },
-      { id: "3", path: "/auction/past", link: "Past Auctions" }
+      // { id: "3", path: "/auction/past", link: "Past Auctions" }
     ]
   },
   {
@@ -84,7 +87,7 @@ export const processList = [
   },
 ];
 
-
+// FAQ Data
 export const faqData = [
   {
     question: "How do I register for an auction?",
@@ -115,164 +118,166 @@ export const faqData = [
 
 
 
-export const AuctionData = [
-  // ---------------------- ONGOING AUCTIONS ----------------------
-  {
-    id: 1,
-    title: "3 BHK Flat in Mumbai",
-    category: "Residential",
-    possession: "Ready to Move",
-    price: "₹ 85,00,000",
-    auctionStartDate: "2nd Feb 2025 10:00",
-    auctionEndDate: "4th Feb 2025 13:02",
-    timeLeft: "4h 28m 38s",
-    currentBid: 8000000,
-    bidIncrement: 50000,
-    status: "Ongoing",
-    images: [
-      "https://oceaninfra.co/wp-content/uploads/2023/10/3-BHK-Flat-Sale-in-Thane-1-2-BHK-Flat-in-Thane-Ocean-Infra.webp",
-      "https://5.imimg.com/data5/BE/CR/XD/SELLER-27323816/4-bhk-flat-sale-service-500x500.jpg"
-    ],
-    biddingHistory: [
-      { user: "Bidder 1", amount: "₹ 80,00,000", date: "03/02/25 14:32:13" },
-      { user: "Bidder 2", amount: "₹ 79,50,000", date: "03/02/25 14:20:10" }
-    ],
-    description: "This stunning 3BHK flat in Mumbai is available for auction. The property includes a spacious living room, modular kitchen, and balconies with a beautiful view of the city skyline."
-  },
-  {
-    id: 2,
-    title: "Luxury Villa in Goa",
-    category: "Luxury",
-    possession: "Under Construction",
-    price: "₹ 1.5 Cr",
-    auctionStartDate: "3rd Feb 2025 12:00",
-    auctionEndDate: "5th Feb 2025 18:00",
-    timeLeft: "8h 15m 20s",
-    currentBid: 14000000,
-    bidIncrement: 100000,
-    status: "Ongoing",
-    images: [
-      "https://5.imimg.com/data5/BE/CR/XD/SELLER-27323816/4-bhk-flat-sale-service-500x500.jpg",
-      "https://oceaninfra.co/wp-content/uploads/2023/10/3-BHK-Flat-Sale-in-Thane-1-2-BHK-Flat-in-Thane-Ocean-Infra.webp"
-    ],
-    biddingHistory: [
-      { user: "Bidder 3", amount: "₹ 1.4 Cr", date: "03/02/25 11:45:00" },
-      { user: "Bidder 4", amount: "₹ 1.35 Cr", date: "03/02/25 10:20:50" }
-    ],
-    description: "A beautiful luxury villa located near Goa beachside, offering top-notch amenities and serene surroundings. A perfect investment for holiday stays and rentals."
-  },
-  {
-    id: 3,
-    title: "2 BHK Apartment in Pune",
-    category: "Residential",
-    possession: "Ready to Move",
-    price: "₹ 60,00,000",
-    auctionStartDate: "3rd Feb 2025 14:00",
-    auctionEndDate: "5th Feb 2025 16:30",
-    timeLeft: "6h 45m 12s",
-    currentBid: 5500000,
-    bidIncrement: 40000,
-    status: "Ongoing",
-    images: [
-      "https://oceaninfra.co/wp-content/uploads/2023/10/3-BHK-Flat-Sale-in-Thane-1-2-BHK-Flat-in-Thane-Ocean-Infra.webp",
-      "https://5.imimg.com/data5/BE/CR/XD/SELLER-27323816/4-bhk-flat-sale-service-500x500.jpg"
-    ],
-    biddingHistory: [
-      { user: "Bidder 5", amount: "₹ 55,00,000", date: "03/02/25 16:00:00" },
-      { user: "Bidder 6", amount: "₹ 54,60,000", date: "03/02/25 15:30:10" }
-    ],
-    description: "Spacious 2BHK apartment in Pune with modern amenities and a great location."
-  },
+
+
+// export const AuctionData = [
+//   // ---------------------- ONGOING AUCTIONS ----------------------
+//   {
+//     id: 1,
+//     title: "3 BHK Flat in Mumbai",
+//     category: "Residential",
+//     possession: "Ready to Move",
+//     price: "₹ 85,00,000",
+//     auctionStartDate: "2nd Feb 2025 10:00",
+//     auctionEndDate: "4th Feb 2025 13:02",
+//     timeLeft: "4h 28m 38s",
+//     currentBid: 8000000,
+//     bidIncrement: 50000,
+//     status: "Ongoing",
+//     images: [
+//       "https://oceaninfra.co/wp-content/uploads/2023/10/3-BHK-Flat-Sale-in-Thane-1-2-BHK-Flat-in-Thane-Ocean-Infra.webp",
+//       "https://5.imimg.com/data5/BE/CR/XD/SELLER-27323816/4-bhk-flat-sale-service-500x500.jpg"
+//     ],
+//     biddingHistory: [
+//       { user: "Bidder 1", amount: "₹ 80,00,000", date: "03/02/25 14:32:13" },
+//       { user: "Bidder 2", amount: "₹ 79,50,000", date: "03/02/25 14:20:10" }
+//     ],
+//     description: "This stunning 3BHK flat in Mumbai is available for auction. The property includes a spacious living room, modular kitchen, and balconies with a beautiful view of the city skyline."
+//   },
+//   {
+//     id: 2,
+//     title: "Luxury Villa in Goa",
+//     category: "Luxury",
+//     possession: "Under Construction",
+//     price: "₹ 1.5 Cr",
+//     auctionStartDate: "3rd Feb 2025 12:00",
+//     auctionEndDate: "5th Feb 2025 18:00",
+//     timeLeft: "8h 15m 20s",
+//     currentBid: 14000000,
+//     bidIncrement: 100000,
+//     status: "Ongoing",
+//     images: [
+//       "https://5.imimg.com/data5/BE/CR/XD/SELLER-27323816/4-bhk-flat-sale-service-500x500.jpg",
+//       "https://oceaninfra.co/wp-content/uploads/2023/10/3-BHK-Flat-Sale-in-Thane-1-2-BHK-Flat-in-Thane-Ocean-Infra.webp"
+//     ],
+//     biddingHistory: [
+//       { user: "Bidder 3", amount: "₹ 1.4 Cr", date: "03/02/25 11:45:00" },
+//       { user: "Bidder 4", amount: "₹ 1.35 Cr", date: "03/02/25 10:20:50" }
+//     ],
+//     description: "A beautiful luxury villa located near Goa beachside, offering top-notch amenities and serene surroundings. A perfect investment for holiday stays and rentals."
+//   },
+//   {
+//     id: 3,
+//     title: "2 BHK Apartment in Pune",
+//     category: "Residential",
+//     possession: "Ready to Move",
+//     price: "₹ 60,00,000",
+//     auctionStartDate: "3rd Feb 2025 14:00",
+//     auctionEndDate: "5th Feb 2025 16:30",
+//     timeLeft: "6h 45m 12s",
+//     currentBid: 5500000,
+//     bidIncrement: 40000,
+//     status: "Ongoing",
+//     images: [
+//       "https://oceaninfra.co/wp-content/uploads/2023/10/3-BHK-Flat-Sale-in-Thane-1-2-BHK-Flat-in-Thane-Ocean-Infra.webp",
+//       "https://5.imimg.com/data5/BE/CR/XD/SELLER-27323816/4-bhk-flat-sale-service-500x500.jpg"
+//     ],
+//     biddingHistory: [
+//       { user: "Bidder 5", amount: "₹ 55,00,000", date: "03/02/25 16:00:00" },
+//       { user: "Bidder 6", amount: "₹ 54,60,000", date: "03/02/25 15:30:10" }
+//     ],
+//     description: "Spacious 2BHK apartment in Pune with modern amenities and a great location."
+//   },
   
-  // Past Auctions (4-16)
-  ...Array.from({ length: 13 }, (_, i) => ({
-    id: 4 + i,
-    title: `Auctioned Property ${4 + i}`,
-    category: i % 2 === 0 ? "Residential" : "Commercial",
-    possession: "Sold",
-    price: `₹ ${50 + i * 5} Lakh`,
-    auctionStartDate: `1st Jan 2025 10:00`,
-    auctionEndDate: `3rd Jan 2025 18:00`,
-    timeLeft: "Auction Ended",
-    currentBid: 4800000 + i * 200000,
-    bidIncrement: 25000,
-    status: "Past",
-    images: [
-      "https://5.imimg.com/data5/BE/CR/XD/SELLER-27323816/4-bhk-flat-sale-service-500x500.jpg",
-      "https://oceaninfra.co/wp-content/uploads/2023/10/3-BHK-Flat-Sale-in-Thane-1-2-BHK-Flat-in-Thane-Ocean-Infra.webp"
-    ],
-    biddingHistory: [
-      { user: "Bidder", amount: `₹ ${48 + i * 2} Lakh`, date: "03/01/25 15:00:00" }
-    ],
-    description: `Well-located property with high potential value.`
-  })),
+//   // Past Auctions (4-16)
+//   ...Array.from({ length: 13 }, (_, i) => ({
+//     id: 4 + i,
+//     title: `Auctioned Property ${4 + i}`,
+//     category: i % 2 === 0 ? "Residential" : "Commercial",
+//     possession: "Sold",
+//     price: `₹ ${50 + i * 5} Lakh`,
+//     auctionStartDate: `1st Jan 2025 10:00`,
+//     auctionEndDate: `3rd Jan 2025 18:00`,
+//     timeLeft: "Auction Ended",
+//     currentBid: 4800000 + i * 200000,
+//     bidIncrement: 25000,
+//     status: "Past",
+//     images: [
+//       "https://5.imimg.com/data5/BE/CR/XD/SELLER-27323816/4-bhk-flat-sale-service-500x500.jpg",
+//       "https://oceaninfra.co/wp-content/uploads/2023/10/3-BHK-Flat-Sale-in-Thane-1-2-BHK-Flat-in-Thane-Ocean-Infra.webp"
+//     ],
+//     biddingHistory: [
+//       { user: "Bidder", amount: `₹ ${48 + i * 2} Lakh`, date: "03/01/25 15:00:00" }
+//     ],
+//     description: `Well-located property with high potential value.`
+//   })),
   
   
-  // ---------------------- PAST AUCTIONS ----------------------
-  {
-    id: 9,
-    title: "1 BHK Flat in Delhi",
-    category: "Residential",
-    possession: "Sold",
-    price: "₹ 55,00,000",
-    auctionStartDate: "1st Jan 2025 09:00",
-    auctionEndDate: "3rd Jan 2025 18:00",
-    timeLeft: "Auction Ended",
-    currentBid: 5300000,
-    bidIncrement: 25000,
-    status: "Past",
-    images: [
-      "https://oceaninfra.co/wp-content/uploads/2023/10/3-BHK-Flat-Sale-in-Thane-1-2-BHK-Flat-in-Thane-Ocean-Infra.webp",
-      "https://5.imimg.com/data5/BE/CR/XD/SELLER-27323816/4-bhk-flat-sale-service-500x500.jpg"
-    ],
-    biddingHistory: [
-      { user: "Bidder 7", amount: "₹ 53,00,000", date: "03/01/25 14:45:00" },
-      { user: "Bidder 8", amount: "₹ 52,50,000", date: "02/01/25 13:20:10" }
-    ],
-    description: "Fully furnished 1BHK flat in Delhi with excellent metro connectivity."
-  },
-  // More past auction entries (total 8)...
+//   // ---------------------- PAST AUCTIONS ----------------------
+//   {
+//     id: 9,
+//     title: "1 BHK Flat in Delhi",
+//     category: "Residential",
+//     possession: "Sold",
+//     price: "₹ 55,00,000",
+//     auctionStartDate: "1st Jan 2025 09:00",
+//     auctionEndDate: "3rd Jan 2025 18:00",
+//     timeLeft: "Auction Ended",
+//     currentBid: 5300000,
+//     bidIncrement: 25000,
+//     status: "Past",
+//     images: [
+//       "https://oceaninfra.co/wp-content/uploads/2023/10/3-BHK-Flat-Sale-in-Thane-1-2-BHK-Flat-in-Thane-Ocean-Infra.webp",
+//       "https://5.imimg.com/data5/BE/CR/XD/SELLER-27323816/4-bhk-flat-sale-service-500x500.jpg"
+//     ],
+//     biddingHistory: [
+//       { user: "Bidder 7", amount: "₹ 53,00,000", date: "03/01/25 14:45:00" },
+//       { user: "Bidder 8", amount: "₹ 52,50,000", date: "02/01/25 13:20:10" }
+//     ],
+//     description: "Fully furnished 1BHK flat in Delhi with excellent metro connectivity."
+//   },
+//   // More past auction entries (total 8)...
   
-  // ---------------------- UPCOMING AUCTIONS ----------------------
-  // {
-  //   id: 17,
-  //   title: "Luxury Beachfront Villa in Kerala",
-  //   category: "Luxury",
-  //   possession: "Under Construction",
-  //   price: "₹ 3.5 Cr",
-  //   auctionStartDate: "10th Feb 2025 09:00",
-  //   auctionEndDate: "15th Feb 2025 18:00",
-  //   timeLeft: "Auction Yet to Start",
-  //   currentBid: 0,
-  //   bidIncrement: 250000,
-  //   status: "Upcoming",
-  //   images: [
-  //     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjwc_Zqb7ld7__xh_xkRg3_Yz7zXaT9SQVzw&s"
-  //   ],
-  //   biddingHistory: [],
-  //   description: "A breathtaking beachfront villa in Kerala. Ultimate luxury for high-end buyers."
-  // },
-    // Upcoming Auctions (17-24)
-    ...Array.from({ length: 8 }, (_, i) => ({
-      id: 17 + i,
-      title: `Upcoming Property ${17 + i}`,
-      category: i % 2 === 0 ? "Luxury" : "Residential",
-      possession: "Under Construction",
-      price: `₹ ${1.5 + i * 0.5} Cr`,
-      auctionStartDate: `10th Feb 2025 09:00`,
-      auctionEndDate: `15th Feb 2025 18:00`,
-      timeLeft: "Auction Yet to Start",
-      currentBid: 0,
-      bidIncrement: 50000,
-      status: "Upcoming",
-      images: [
-        "https://5.imimg.com/data5/BE/CR/XD/SELLER-27323816/4-bhk-flat-sale-service-500x500.jpg",
-        "https://oceaninfra.co/wp-content/uploads/2023/10/3-BHK-Flat-Sale-in-Thane-1-2-BHK-Flat-in-Thane-Ocean-Infra.webp"
-      ],
-      biddingHistory: [],
-      description: `A premium property in a prime location.`
-    }))
-];
+//   // ---------------------- UPCOMING AUCTIONS ----------------------
+//   // {
+//   //   id: 17,
+//   //   title: "Luxury Beachfront Villa in Kerala",
+//   //   category: "Luxury",
+//   //   possession: "Under Construction",
+//   //   price: "₹ 3.5 Cr",
+//   //   auctionStartDate: "10th Feb 2025 09:00",
+//   //   auctionEndDate: "15th Feb 2025 18:00",
+//   //   timeLeft: "Auction Yet to Start",
+//   //   currentBid: 0,
+//   //   bidIncrement: 250000,
+//   //   status: "Upcoming",
+//   //   images: [
+//   //     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjwc_Zqb7ld7__xh_xkRg3_Yz7zXaT9SQVzw&s"
+//   //   ],
+//   //   biddingHistory: [],
+//   //   description: "A breathtaking beachfront villa in Kerala. Ultimate luxury for high-end buyers."
+//   // },
+//     // Upcoming Auctions (17-24)
+//     ...Array.from({ length: 8 }, (_, i) => ({
+//       id: 17 + i,
+//       title: `Upcoming Property ${17 + i}`,
+//       category: i % 2 === 0 ? "Luxury" : "Residential",
+//       possession: "Under Construction",
+//       price: `₹ ${1.5 + i * 0.5} Cr`,
+//       auctionStartDate: `10th Feb 2025 09:00`,
+//       auctionEndDate: `15th Feb 2025 18:00`,
+//       timeLeft: "Auction Yet to Start",
+//       currentBid: 0,
+//       bidIncrement: 50000,
+//       status: "Upcoming",
+//       images: [
+//         "https://5.imimg.com/data5/BE/CR/XD/SELLER-27323816/4-bhk-flat-sale-service-500x500.jpg",
+//         "https://oceaninfra.co/wp-content/uploads/2023/10/3-BHK-Flat-Sale-in-Thane-1-2-BHK-Flat-in-Thane-Ocean-Infra.webp"
+//       ],
+//       biddingHistory: [],
+//       description: `A premium property in a prime location.`
+//     }))
+// ];
 
 
 
