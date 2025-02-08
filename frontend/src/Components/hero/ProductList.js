@@ -15,14 +15,18 @@ export const ProductList = () => {
   return (
     <section className="product-home bg-gray-100 py-12">
       <Container className="w-full mx-auto px-6">
+        <div className="text-center mb-6">
         <Heading
           title="Live Auctions"
           subtitle="Explore the world's best & largest bidding marketplace with our exclusive properties up for auction."
-          className="text-center"
+          className="text-center mb-6"
         />
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 my-8 justify-items-center">
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-center">
           {ongoingAuctions.map((auction) => (
-            <ProductCard item={auction} key={auction.id} className="w-full" />
+            <div className="w-full max-w-sm"> {/* Ensures uniform width */}
+              <ProductCard item={auction} key={auction.id} />
+            </div>
           ))}
         </div>
         
