@@ -13,10 +13,10 @@ export const Header = () => {
   const navigate = useNavigate();
   const menuRef = useRef(null);
 
-  // ✅ Move fetchUser outside useEffect
+  // Function to fetch user session
   const fetchUser = async () => {
     try {
-      const response = await fetch("https://localhost:5002/api/Userinfoes/current-user", {
+      const response = await fetch("https://localhost:7155/api/Users/current-user", {
         method: "GET",
         credentials: "include", // Ensures session is included
       });
@@ -28,6 +28,7 @@ export const Header = () => {
       const data = await response.json();
       if (data.userEmail) {
         setUser(data); // Store user data
+        sessionStorage.setItem("user", JSON.stringify(data)); // Ensure session persistence
       } else {
         setUser(null);
       }
@@ -37,9 +38,20 @@ export const Header = () => {
     }
   };
 
-  // ✅ Call fetchUser correctly in useEffect
+  // Call fetchUser when component mounts
   useEffect(() => {
     fetchUser();
+  }, []);
+
+  // Listen for login/logout sessionStorage changes
+  useEffect(() => {
+    const checkUserSession = () => {
+      const storedUser = sessionStorage.getItem("user");
+      setUser(storedUser ? JSON.parse(storedUser) : null);
+    };
+
+    window.addEventListener("storage", checkUserSession);
+    return () => window.removeEventListener("storage", checkUserSession);
   }, []);
 
   const toggleMenu = () => setIsOpen(!isOpen);
@@ -67,24 +79,23 @@ export const Header = () => {
 
   const handleLogout = async () => {
     try {
-      await fetch("https://localhost:5002/api/Userinfoes/logout", {
+      await fetch("https://localhost:7155/api/Users/logout", {
         method: "POST",
         credentials: "include", // Ensure session is cleared
       });
-      sessionStorage.removeItem("user"); // Clear user data from session storage
-      setUser(null);
-      navigate("/login"); // Redirect to login after logout
 
-      window.location.reload();
+      sessionStorage.removeItem("user"); // Clear session
+      setUser(null);
+      navigate("/login"); // Redirect to login
+      window.location.reload(); // Reload to update UI
     } catch (error) {
-      console.error("Logout failed");
+      console.error("Logout failed:", error);
     }
   };
 
   // Redirect user to the correct dashboard
   const handleProfileClick = () => {
     if (!user) return;
-
     switch (user.userRole) {
       case "admin":
         navigate("/admin");
@@ -96,7 +107,7 @@ export const Header = () => {
         navigate("/buyer");
         break;
       default:
-        navigate("/buyer");
+        navigate("/");
     }
   };
 

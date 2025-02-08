@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Caption, Container, CustomNavLink, PrimaryButton, Title } from "../../Routes";
+import { commonClassNameOfInput } from "../../Components/Common/Design";
 
 export const Login = () => {
     const [email, setEmail] = useState("");
@@ -8,86 +10,111 @@ export const Login = () => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-    // Redirect logged-in users
-    useEffect(() => {
-        const storedUser = sessionStorage.getItem("user");
-        if (storedUser) {
-            navigate("/"); // Redirect to home or dashboard
-        }
-    }, [navigate]);
-
     const handleLogin = async (e) => {
         e.preventDefault();
         setError("");
-        setLoading(true);                                   
+        setLoading(true);
 
         try {
-            const response = await fetch("https://localhost:5002/api/Userinfoes/login", {
+            const response = await fetch("https://localhost:7155/api/Users/login", {
                 method: "POST",
-                credentials: "include", // Ensures session cookies are sent
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, password }),
+                body: JSON.stringify({ email, password }), 
             });
 
             const data = await response.json();
             setLoading(false);
 
             if (response.ok) {
-                sessionStorage.setItem("user", JSON.stringify(data));
-                alert("Login successful!");
-                navigate("/"); // Redirect after login
-                window.location.reload(); // Reload to update state globally
+                localStorage.setItem("token", data.token);
+                localStorage.setItem("role", data.role); 
+
+                // Redirect based on user role
+                if (data.role === "admin") {
+                    navigate("/admin"); 
+                }else if (data.role === "buyer"){
+                    navigate("/buyer"); 
+                }
+                else if (data.role === "seller"){
+                    navigate("/seller"); 
+                } 
+                else {
+                    navigate("/");
+                }
             } else {
-                setError(data.message || "Invalid email or password");
+                setError(data.message || "Login failed");
             }
         } catch (error) {
             setLoading(false);
-            setError("Network error. Please try again.");
+            setError("An error occurred. Please try again.");
         }
     };
 
     return (
-        <div className="flex justify-center items-center min-h-screen bg-gray-100">
-            <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
-                <h2 className="text-2xl font-semibold text-center text-gray-700">Login</h2>
-                {error && <p className="text-red-500 text-center mt-2">{error}</p>}
-                <form className="mt-6" onSubmit={handleLogin}>
-                    <div className="mb-4">
-                        <label className="block text-gray-600">Email</label>
+        <>
+            <section className="register pt-16 relative">
+                <div className="bg-green w-96 h-96 rounded-full opacity-20 blur-3xl absolute top-2/3"></div>
+                <div className="bg-[#241C37] pt-8 h-[40vh] relative content">
+                    <Container>
+                        <div>
+                            <Title level={3} className="text-white">Log In</Title>
+                            <div className="flex items-center gap-3">
+                                <Title level={5} className="text-green font-normal text-xl">Home</Title>
+                                <Title level={5} className="text-white font-normal text-xl">/</Title>
+                                <Title level={5} className="text-white font-normal text-xl">Log In</Title>
+                            </div>
+                        </div>
+                    </Container>
+                </div>
+                <form className="bg-white shadow-s3 w-1/3 m-auto my-16 p-8 rounded-xl" onSubmit={handleLogin}>
+                    <div className="text-center">
+                        <Title level={5}>New Member</Title>
+                        <p className="mt-2 text-lg">
+                            Do you already have an account? <CustomNavLink href="/register">Signup Here</CustomNavLink>
+                        </p>
+                    </div>
+
+                    {error && <p className="text-red-500 text-center mt-2">{error}</p>}
+
+                    <div className="py-5 mt-8">
+                        <Caption className="mb-2">Enter Your Email *</Caption>
                         <input 
                             type="email" 
-                            className="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" 
-                            placeholder="Enter your email" 
-                            value={email} 
+                            name="email" 
+                            className={commonClassNameOfInput} 
+                            placeholder="Enter Your Email" 
+                            value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            required
+                            required 
                         />
                     </div>
-                    <div className="mb-4">
-                        <label className="block text-gray-600">Password</label>
+                    <div>
+                        <Caption className="mb-2">Password *</Caption>
                         <input 
                             type="password" 
-                            className="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" 
-                            placeholder="Enter your password" 
-                            value={password} 
+                            name="password" 
+                            className={commonClassNameOfInput} 
+                            placeholder="Enter Your Password" 
+                            value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            required
+                            required 
                         />
                     </div>
-                    <button 
-                        type="submit" 
-                        className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-200"
-                        disabled={loading}
-                    >
-                        {loading ? "Logging in..." : "Login"}
-                    </button>
+                    <div className="flex items-center gap-2 py-4">
+                        <input type="checkbox" required />
+                        <Caption>I agree to the Terms & Policy</Caption>
+                    </div>
+                    <PrimaryButton className="w-full rounded-none my-5" type="submit" disabled={loading}>
+                        {loading ? "Logging in..." : "LOGIN"}
+                    </PrimaryButton>
+                    <p className="text-center mt-5">
+                        By clicking the signup button, you create an account, and you agree to PropertyAuction 
+                        <span className="text-green underline"> Terms & Conditions </span> &
+                        <span className="text-green underline"> Privacy Policy </span>.
+                    </p>
                 </form>
-                <p className="text-center text-gray-600 mt-4">
-                    Don't have an account? <a href="/register" className="text-blue-600 hover:underline">Sign Up</a>
-                </p>
-            </div>
-        </div>
+                <div className="bg-green w-96 h-96 rounded-full opacity-20 blur-3xl absolute bottom-96 right-0"></div>
+            </section>
+        </>
     );
 };
-
-export default Login;

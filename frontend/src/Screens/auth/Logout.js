@@ -5,7 +5,7 @@ const Logout = () => {
 
     const handleLogout = async () => {
         try {
-            await fetch("https://localhost:5002/api/Userinfoes/logout", {
+            await fetch("https://localhost:7155/api/Users/logout", {
                 method: "POST",
                 credentials: "include", // Ensure cookies are included
             });

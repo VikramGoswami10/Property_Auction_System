@@ -37,7 +37,7 @@
     export { ProductList } from "../Components/hero/ProductList";
     export { UpcomingAuction } from "../Components/hero/UpcomingAuction";
     export { Process } from "../Components/hero/Process";
-    export { PastAuction } from "../Components/hero/PastAuction";
+    // export { PastAuction } from "../Components/hero/PastAuction";
 
     // Data Util
     // export { categorylists } from "../Utils/Data";
