@@ -1,136 +1,190 @@
 import { useState, useEffect, useRef } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { AiOutlineMenu, AiOutlineClose, AiOutlineDown } from "react-icons/ai";
-import { Container, CustomNavLink, CustomNavLinkList, ProfileCard , User1 } from "../../Routes";
-import { menulists } from "../../Utils/Data";
+import { Container, CustomNavLink } from "../../Routes";
+import { useAuth } from "../../Screens/auth/context/AuthContext"; // ✅ Import AuthContext
+
+// Default Profile Image
+const defaultProfilePic = "https://www.w3schools.com/howto/img_avatar.png"; // Replace with actual default image
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState(null); // Keep track of open dropdown by id
-  const location = useLocation();
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const menuRef = useRef(null);
-
-  const toggleMenu = () => setIsOpen(!isOpen);
-
-  // Function to open/close specific dropdown
-  const toggleDropdown = (id) => {
-    setOpenDropdown(openDropdown === id ? null : id); // Close dropdown if the same id is clicked
-  };
-
-  // Function to close dropdown when an item is clicked
-  const closeDropdown = () => setOpenDropdown(null);
+  const navigate = useNavigate();
+  const location = useLocation();
+  
+  const { user, setUser, fetchUser } = useAuth(); // ✅ Use global auth state
 
   useEffect(() => {
-    const closeMenuOutside = (event) => {
+    fetchUser(); // ✅ Ensure navbar updates dynamically
+  }, []);
+
+  const toggleMenu = () => setIsOpen(!isOpen);
+  const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
+
+  useEffect(() => {
+    const closeOutsideClick = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
         setIsOpen(false);
-        setOpenDropdown(null); // Close any open dropdown when clicking outside
+        setDropdownOpen(false);
       }
     };
 
     const handleScroll = () => setIsScrolled(window.scrollY > 0);
 
-    document.addEventListener("mousedown", closeMenuOutside);
+    document.addEventListener("mousedown", closeOutsideClick);
     window.addEventListener("scroll", handleScroll);
 
     return () => {
-      document.removeEventListener("mousedown", closeMenuOutside);
+      document.removeEventListener("mousedown", closeOutsideClick);
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
-  const isHomePage = location.pathname === "/";
-  const role = "buyer";
+  const handleLogout = async () => {
+    try {
+      await fetch("https://localhost:5002/api/Userinfoes/logout", {
+        method: "POST",
+        credentials: "include",
+      });
+
+      sessionStorage.removeItem("user"); // ✅ Clear session data
+      setUser(null); // ✅ Update AuthContext
+      navigate("/login");
+    } catch (error) {
+      console.error("Logout failed");
+    }
+  };
+
+  // ✅ Function to determine user profile route
+  const getProfileRoute = () => {
+    if (!user) return "/login";
+    switch (user.userRole) {
+      case "admin":
+        return "/admin";
+      case "seller":
+        return "/seller";
+      case "buyer":
+        return "/buyer";
+      default:
+        return "/buyer";
+    }
+  };
 
   return (
-    <header className={isHomePage ? `header py-1 bg-primary ${isScrolled ? "scrolled" : ""}` : `header bg-white shadow-s1 ${isScrolled ? "scrolled" : ""}`}>
+    <header className={`fixed top-0 left-0 w-full bg-white shadow-md z-50 transition-all ${isScrolled ? "py-2" : "py-4"}`}>
       <Container>
-        <nav className="p-4 flex justify-between items-center relative" ref={menuRef}>
-          <div className="flex items-center gap-14">
-            {/* LOGO */}
-            <div>
-              <img src="../images/common/header-logo.png" alt="LogoImg" className="h-11" />
-            </div>
-
-            {/* Desktop Menu Links */}
-            <div className="hidden lg:flex items-center gap-8">
-              {menulists.map((list) => (
-                <li key={list.id} className="capitalize list-none relative">
-                  {list.submenu ? (
-                    <div className="relative group">
-                      <button
-                        onClick={() => toggleDropdown(list.id)} // Open/close based on the ID
-                        className={`${isScrolled || !isHomePage ? "text-black" : "text-white"} flex items-center gap-1`}
-                      >
-                        {list.link}
-                        <AiOutlineDown size={12} />
-                      </button>
-                      {/* Dropdown Menu */}
-                      {openDropdown === list.id && (
-                        <ul className="absolute left-0 top-full mt-2 bg-white shadow-md rounded-md w-48 z-50">
-                          {list.submenu.map((sub) => (
-                            <li key={sub.id} className="px-4 py-2 hover:bg-gray-100">
-                              <CustomNavLinkList
-                                href={sub.path}
-                                className="text-black"
-                                onClick={closeDropdown} // Close dropdown on item selection
-                              >
-                                {sub.link}
-                              </CustomNavLinkList>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </div>
-                  ) : (
-                    <CustomNavLinkList
-                      href={list.path}
-                      isActive={location.pathname === list.path}
-                      className={`${isScrolled || !isHomePage ? "text-black" : "text-white"}`}
-                    >
-                      {list.link}
-                    </CustomNavLinkList>
-                  )}
-                </li>
-              ))}
-            </div>
+        <nav className="flex justify-between items-center px-6 lg:px-12">
+          {/* LOGO */}
+          <div onClick={() => navigate("/")} className="cursor-pointer">
+            <img src="../images/common/logo.png" alt="LogoImg" className="h-11" />
           </div>
 
-          {/* Right Section */}
-          <div className="flex items-center gap-8">
-            {/* Become a Seller */}
-            {role === "buyer" && (
-              <CustomNavLink href="/seller/login" className={`${isScrolled || !isHomePage ? "text-black" : "text-white"}`}>
-                Become a Seller
-              </CustomNavLink>
+          {/* Navbar Links */}
+          <div className="hidden lg:flex items-center space-x-8">
+            <button onClick={() => navigate("/")} className="text-gray-700 hover:text-black">
+              Home
+            </button>
+            <button onClick={() => navigate("/auctions")} className="text-gray-700 hover:text-black">
+              Auctions
+            </button>
+            <button onClick={() => navigate("/how-to-bid")} className="text-gray-700 hover:text-black">
+              How to Bid
+            </button>
+            <button onClick={() => navigate("/contact")} className="text-gray-700 hover:text-black">
+              Contact
+            </button>
+            <button onClick={() => navigate("/faq")} className="text-gray-700 hover:text-black">
+              FAQ
+            </button>
+          </div>
+
+          {/* Right Section: Login/Profile */}
+          <div className="flex items-center gap-6">
+            {user ? (
+              <div className="relative">
+                {/* Profile Button */}
+                <button 
+                  onClick={toggleDropdown} 
+                  className="flex items-center gap-2 bg-white text-black px-4 py-2 rounded-full shadow-md border border-gray-300"
+                >
+                  <img 
+                    src={user.profilePic || defaultProfilePic} 
+                    alt="Profile" 
+                    className="w-8 h-8 rounded-full object-cover" 
+                  />
+                  {user.userEmail}
+                  <AiOutlineDown size={14} />
+                </button>
+
+                {/* Dropdown Menu */}
+                {dropdownOpen && (
+                  <div className="absolute right-4 mt-2 w-50 bg-white shadow-lg rounded-lg overflow-hidden border border-gray-300">
+                    <button 
+                      onClick={() => navigate(getProfileRoute())} 
+                      className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    >
+                      My Profile
+                    </button>
+                    <button 
+                      onClick={handleLogout} 
+                      className="w-full text-left px-4 py-2 text-red-500 hover:bg-gray-100"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <>
+                <button onClick={() => navigate("/seller/login")} className="text-gray-700 hover:text-black">
+                  Become a Seller
+                </button>
+                <button onClick={() => navigate("/login")} className="text-gray-700 hover:text-black">
+                  Sign in
+                </button>
+                <button 
+                  onClick={() => navigate("/register")} 
+                  className="px-6 py-2 rounded-full shadow-md transition bg-blue-500 text-white"
+                >
+                  Join
+                </button>
+              </>
             )}
-
-            {/* Sign In */}
-            <CustomNavLink href="/login" className={`${isScrolled || !isHomePage ? "text-black" : "text-white"}`}>
-              Sign in
-            </CustomNavLink>
-
-            {/* Join */}
-            <CustomNavLink href="/register" className={`${!isHomePage || isScrolled ? "bg-green" : "bg-white"} px-8 py-2 rounded-full text-yellow shadow-md`}>
-              Join
-            </CustomNavLink>
-
-            {/* Profile */} 
-            <CustomNavLink href="/admin">
-              <ProfileCard>
-                <img src={User1} alt="User" className="w-full h-full object-cover" />
-              </ProfileCard>
-            </CustomNavLink>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="lg:hidden">
-            <button onClick={toggleMenu} className="w-10 h-10 flex justify-center items-center bg-black text-white">
+            <button onClick={toggleMenu} className="w-10 h-10 flex justify-center items-center bg-black text-white rounded">
               {isOpen ? <AiOutlineClose size={24} /> : <AiOutlineMenu size={24} />}
             </button>
           </div>
         </nav>
+
+        {/* Mobile Menu */}
+        {isOpen && (
+          <nav className="lg:hidden bg-gray-800 text-white py-4 px-6 space-y-3">
+            <button onClick={() => { navigate("/"); setIsOpen(false); }} className="block hover:text-yellow-400">Home</button>
+            <button onClick={() => { navigate("/auctions"); setIsOpen(false); }} className="block hover:text-yellow-400">Auctions</button>
+            <button onClick={() => { navigate("/about"); setIsOpen(false); }} className="block hover:text-yellow-400">About</button>
+            {user ? (
+              <>
+                <button onClick={() => { navigate(getProfileRoute()); setIsOpen(false); }} className="block hover:text-yellow-400">My Profile</button>
+                <button onClick={() => { handleLogout(); setIsOpen(false); }} className="w-full text-left hover:text-red-400">
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <button onClick={() => { navigate("/seller/login"); setIsOpen(false); }} className="block hover:text-yellow-400">Become a Seller</button>
+                <button onClick={() => { navigate("/login"); setIsOpen(false); }} className="block hover:text-yellow-400">Sign in</button>
+                <button onClick={() => { navigate("/register"); setIsOpen(false); }} className="block bg-blue-500 text-center py-2 rounded-lg">Join</button>
+              </>
+            )}
+          </nav>
+        )}
       </Container>
     </header>
   );

@@ -16,7 +16,7 @@ import { Login, Register, LoginAsSeller } from "./Routes/index";
 import AdminDashboard from "./Components/Dashboard/AdminDashboard";
 import BuyerDashboard from "./Components/Dashboard/BuyerDashboard";
 import SellerDashboard from "./Components/Dashboard/SellersDashboard";
-
+import CreateAuction from "./Components/Dashboard/CreateAuction";
 function App() {
   return (
     <>
@@ -167,6 +167,17 @@ function App() {
                 </div>
               </Layout>
             }
+          />
+          {/* Seller Create Auction */}
+          <Route
+            path="/seller/create-auction"
+            element={
+              <Layout>
+                <div className="mt-24">
+                  <CreateAuction />
+                </div>
+              </Layout>
+          }
           />
         </Routes>
       </BrowserRouter>

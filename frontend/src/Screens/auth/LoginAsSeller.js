@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Caption, Container, PrimaryButton, Title } from "../../Routes";
+import { Caption, Container, CustomNavLink, PrimaryButton, Title } from "../../Routes";
 import { commonClassNameOfInput } from "../../Components/Common/Design";
 
 export const LoginAsSeller = () => {
@@ -17,7 +17,7 @@ export const LoginAsSeller = () => {
         setLoading(true); // Set loading to true
 
         try {
-            const response = await fetch("https://localhost:7155/api/Users/register", {
+            const response = await fetch("https://localhost:5002/api/Userinfoes/register", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({

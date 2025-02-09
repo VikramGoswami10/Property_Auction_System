@@ -45,6 +45,10 @@ function SellerDashboard() {
     navigate('/login');
   };
 
+  const handleOnClick = () => {
+    navigate('/seller/create-auction');
+  };
+
   const DashboardContent = () => (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
@@ -90,7 +94,7 @@ function SellerDashboard() {
     <div>
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold">My Listings</h2>
-        <button className="bg-purple-600 text-white px-4 py-2 rounded-lg flex items-center gap-2">
+        <button className="bg-purple-600 text-white px-4 py-2 rounded-lg flex items-center gap-2" onClick={handleOnClick}>
           <Plus size={20} /> New Listing
         </button>
       </div>
