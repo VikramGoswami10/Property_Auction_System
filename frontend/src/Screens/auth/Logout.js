@@ -1,23 +1,22 @@
-import { useNavigate } from "react-router-dom";
+const handleLogout = async () => {
+    try {
+        await fetch("https://localhost:7155/api/Users/logout", {
+            method: "POST",
+            credentials: "include", // Ensures cookies are included
+        });
 
-const Logout = () => {
-    const navigate = useNavigate();
+        // ✅ Clear all storage (Local, Session, and Cookies)
+        localStorage.clear();
+        sessionStorage.clear();
+        document.cookie.split(";").forEach((c) => {
+            document.cookie = c
+                .replace(/^ +/, "")
+                .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+        });
 
-    const handleLogout = async () => {
-        try {
-            await fetch("https://localhost:7155/api/Users/logout", {
-                method: "POST",
-                credentials: "include", // Ensure cookies are included
-            });
-
-            alert("Logged out successfully!");
-            navigate("/");
-        } catch (error) {
-            alert("Logout failed. Try again.");
-        }
-    };
-
-    return <button onClick={handleLogout}>Logout</button>;
+        alert("Logged out successfully!");
+        window.location.href = "/login"; // Redirect to login page
+    } catch (error) {
+        alert("Logout failed. Try again.");
+    }
 };
-
-export default Logout;
