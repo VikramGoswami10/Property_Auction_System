@@ -211,14 +211,14 @@ function AdminDashboard() {
                       <td className="px-6 py-4">{auction.title}</td>
                       <td className="px-6 py-4">{auction.startTime}</td>
                       <td className="px-6 py-4">{auction.endTime}</td>
-                      {/* <td className="px-6 py-4 flex gap-2">
+                      <td className="px-6 py-4 flex gap-2">
                         <button className="text-blue-600" onClick={() => handleEditAuction(auction)}>
                           <Pencil size={18} />
                         </button>
                         <button className="text-red-600" onClick={() => handleDeleteAuction(auction.auctionId)}>
                           <Trash2 size={18} />
                         </button>
-                      </td> */}
+                      </td>
                     </tr>
                   ))}
                 </tbody>

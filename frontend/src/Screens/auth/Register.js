@@ -23,7 +23,7 @@ export const Register = () => {
         setLoading(true);
 
         try {
-            const response = await fetch("https://localhost:5002/api/Userinfoes/register", {
+            const response = await fetch("https://localhost:7155/api/Users/register", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ ...formData, role: "buyer" }),

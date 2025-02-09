@@ -11,7 +11,7 @@ export const Login = () => {
     useEffect(() => {
         const storedUser = sessionStorage.getItem("user");
         if (storedUser) {
-            navigate("/"); // Redirect if already logged in
+            navigate("/"); 
         }
     }, [navigate]);
 
@@ -21,7 +21,7 @@ export const Login = () => {
         setLoading(true);
 
         try {
-            const response = await fetch("https://localhost:5002/api/Userinfoes/login", {
+            const response = await fetch("https://localhost:7155/api/Users/login", {
                 method: "POST",
                 credentials: "include",
                 headers: { "Content-Type": "application/json" },

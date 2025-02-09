@@ -134,7 +134,7 @@ function SellerDashboard() {
                     {listing.status}
                   </span>
                 </td>
-                {/* <td className="px-6 py-4 whitespace-nowrap">
+                <td className="px-6 py-4 whitespace-nowrap">
                   <div className="flex gap-2">
                     <button className="text-blue-600 hover:text-blue-800">
                       <Pencil size={18} />
@@ -143,7 +143,7 @@ function SellerDashboard() {
                       <Trash2 size={18} />
                     </button>
                   </div>
-                </td> */}
+                </td>
               </tr>
             ))}
           </tbody>

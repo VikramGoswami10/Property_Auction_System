@@ -3,8 +3,6 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { RiAuctionFill } from "react-icons/ri";
-import { GiTakeMyMoney } from "react-icons/gi";
-import { MdOutlineFavorite } from "react-icons/md";
 import { Caption, PrimaryButton, ProfileCard, Title } from "../Common/Design";
 import { NavLink, useNavigate } from "react-router-dom";
 
@@ -14,7 +12,7 @@ export const ProductCard = ({ item }) => {
   const images = item?.images?.length > 0 ? item.images : [
     "https://example.com/default1.jpg",
     "https://example.com/default2.jpg",
-  ]; // ✅ Add real default image URLs
+  ];
 
   const settings = { dots: true, infinite: true, speed: 500, slidesToShow: 1, slidesToScroll: 1, autoplay: true, autoplaySpeed: 3000 };
 

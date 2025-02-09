@@ -6,7 +6,7 @@ export const useAuctionData = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("") // ✅ Use your API
+    fetch("https://localhost:7155/api/Auctions/with-details") // ✅ Use your API
       .then((response) => response.json())
       .then((data) => {
         setAuctions(data);

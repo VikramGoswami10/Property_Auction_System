@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
   // Fetch user data dynamically
   const fetchUser = async () => {
     try {
-      const response = await fetch("https://localhost:5002/api/Userinfoes/current-user", {
+      const response = await fetch("https://localhost:7155/api/Users/current-user", {
         method: "GET",
         credentials: "include", // Ensures session is included
       });
