@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AiOutlineMenu, AiOutlineClose, AiOutlineDown } from "react-icons/ai";
-import { Container, CustomNavLink } from "../../Routes";
+import { Container} from "../../Routes";
 import { useAuth } from "../../Screens/auth/context/AuthContext"; // ✅ Import AuthContext
 
 // Default Profile Image
@@ -11,11 +11,12 @@ export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [propertyDropdown, setPropertyDropdown] = useState(false); // ✅ Track property dropdown
   const menuRef = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();
   
-  const { user, setUser, fetchUser } = useAuth(); // ✅ Use global auth state
+  const { user, setUser, fetchUser } = useAuth(); // Use global auth state
 
   useEffect(() => {
     fetchUser(); // ✅ Ensure navbar updates dynamically
@@ -23,12 +24,14 @@ export const Header = () => {
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
+  const togglePropertyDropdown = () => setPropertyDropdown(!propertyDropdown); // ✅ Toggle Property Dropdown
 
   useEffect(() => {
     const closeOutsideClick = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
         setIsOpen(false);
         setDropdownOpen(false);
+        setPropertyDropdown(false); // ✅ Close Property Dropdown on outside click
       }
     };
 
@@ -45,7 +48,7 @@ export const Header = () => {
 
   const handleLogout = async () => {
     try {
-      await fetch("https://localhost:5002/api/Userinfoes/logout", {
+      await fetch("https://localhost:7155/api/Users/logout", {
         method: "POST",
         credentials: "include",
       });
@@ -73,13 +76,15 @@ export const Header = () => {
     }
   };
 
+  const isHomePage = location.pathname === "/";
+
   return (
-    <header className={`fixed top-0 left-0 w-full bg-white shadow-md z-50 transition-all ${isScrolled ? "py-2" : "py-4"}`}>
+    <header className={isHomePage ? `header py-1 bg-primary ${isScrolled ? "scrolled" : ""}` : `header bg-white shadow-s1 ${isScrolled ? "scrolled" : ""}`}>
       <Container>
-        <nav className="flex justify-between items-center px-6 lg:px-12">
+        <nav className="p-4 flex justify-between items-center px-6 lg:px-12">
           {/* LOGO */}
           <div onClick={() => navigate("/")} className="cursor-pointer">
-            <img src="../images/common/logo.png" alt="LogoImg" className="h-11" />
+            <img src="../images/common/header-logo.png" alt="LogoImg" className="h-11" />
           </div>
 
           {/* Navbar Links */}
@@ -87,9 +92,27 @@ export const Header = () => {
             <button onClick={() => navigate("/")} className="text-gray-700 hover:text-black">
               Home
             </button>
-            <button onClick={() => navigate("/auctions")} className="text-gray-700 hover:text-black">
-              Auctions
-            </button>
+
+            {/* ✅ Property Dropdown */}
+            <div className="relative">
+              <button 
+                onClick={togglePropertyDropdown} 
+                className="text-gray-700 hover:text-black flex items-center gap-1"
+              >
+                Property <AiOutlineDown size={12} />
+              </button>
+              {propertyDropdown && (
+                <ul className="absolute left-0 top-full mt-2 bg-white shadow-md rounded-md w-48 z-50">
+                  <li className="px-4 py-2 hover:bg-gray-100">
+                    <button onClick={() => navigate("/auction")} className="text-black w-full text-left">Live Auctions</button>
+                  </li>
+                  <li className="px-4 py-2 hover:bg-gray-100">
+                    <button onClick={() => navigate("/auction/upcoming")} className="text-black w-full text-left">Upcoming Auctions</button>
+                  </li>
+                </ul>
+              )}
+            </div>
+            
             <button onClick={() => navigate("/how-to-bid")} className="text-gray-700 hover:text-black">
               How to Bid
             </button>
@@ -162,29 +185,6 @@ export const Header = () => {
             </button>
           </div>
         </nav>
-
-        {/* Mobile Menu */}
-        {isOpen && (
-          <nav className="lg:hidden bg-gray-800 text-white py-4 px-6 space-y-3">
-            <button onClick={() => { navigate("/"); setIsOpen(false); }} className="block hover:text-yellow-400">Home</button>
-            <button onClick={() => { navigate("/auctions"); setIsOpen(false); }} className="block hover:text-yellow-400">Auctions</button>
-            <button onClick={() => { navigate("/about"); setIsOpen(false); }} className="block hover:text-yellow-400">About</button>
-            {user ? (
-              <>
-                <button onClick={() => { navigate(getProfileRoute()); setIsOpen(false); }} className="block hover:text-yellow-400">My Profile</button>
-                <button onClick={() => { handleLogout(); setIsOpen(false); }} className="w-full text-left hover:text-red-400">
-                  Logout
-                </button>
-              </>
-            ) : (
-              <>
-                <button onClick={() => { navigate("/seller/login"); setIsOpen(false); }} className="block hover:text-yellow-400">Become a Seller</button>
-                <button onClick={() => { navigate("/login"); setIsOpen(false); }} className="block hover:text-yellow-400">Sign in</button>
-                <button onClick={() => { navigate("/register"); setIsOpen(false); }} className="block bg-blue-500 text-center py-2 rounded-lg">Join</button>
-              </>
-            )}
-          </nav>
-        )}
       </Container>
     </header>
   );
