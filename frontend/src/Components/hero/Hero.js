@@ -21,7 +21,6 @@ export const Hero = () => {
             Where the highest bidder always wins—no popcorn required!
             </Title>
             <Body className="leading-7 text-gray-200 my-8">
-            {/* Experience the thrill of winning and the ease of buying—real estate, reimagined for you. */}
             Reimagine property buying with transparent auctions, smooth transactions, and unbeatable opportunities. From competitive bidding to seamless ownership, we’ve crafted a platform where every highest bid brings you closer to the keys to your future.
             </Body>
             <SearchBox />

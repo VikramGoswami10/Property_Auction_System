@@ -1,6 +1,8 @@
+import { baseurl } from "../../Utils/api";
+
 const handleLogout = async () => {
     try {
-        await fetch("https://localhost:7155/api/Users/logout", {
+        await fetch(baseurl+"Users/logout", {
             method: "POST",
             credentials: "include", // Ensures cookies are included
         });

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { baseurl } from "../../Utils/api";
 
 export const Login = () => {
     const [email, setEmail] = useState("");
@@ -21,7 +22,7 @@ export const Login = () => {
         setLoading(true);
 
         try {
-            const response = await fetch("https://localhost:7155/api/Users/login", {
+            const response = await fetch(baseurl+"Users/login", {
                 method: "POST",
                 credentials: "include",
                 headers: { "Content-Type": "application/json" },

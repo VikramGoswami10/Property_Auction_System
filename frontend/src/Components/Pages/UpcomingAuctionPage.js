@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { MdFavoriteBorder, MdLocationOn, MdAccessTime } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import FilterSortComponent from "./FilterSortComponent";
-import { useAuctionData } from "../../hooks/useAuctionData"; // ✅ Correct Import
+import { useAuctionData } from "../../hooks/useAuctionData";
 
 export const UpcomingAuctionPage = () => {
   const { auctions, loading, error } = useAuctionData();

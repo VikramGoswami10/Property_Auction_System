@@ -12,12 +12,6 @@
     export { default as ContactUs } from "../Components/Pages/ContactUs";
     export { FAQ } from "../Components/Pages/FAQ";  
 
-    // Dashboards
-    // export { AdminDashboard } from "../Components/Pages/Dashboard/AdminDashboard";
-
-    // export { default as BuyerDashboard } from "../Components/Pages/Dashboard/BuyerDashboard";
-    // export { default as SellerDashboard } from "../Components/Pages/Dashboard/SellerDashboard";
-
     // Auth Section
     export { LoginAsSeller } from "../Screens/auth/LoginAsSeller";
     export { Register } from "../Screens/auth/Register";
@@ -38,13 +32,6 @@
     export { UpcomingAuction } from "../Components/hero/UpcomingAuction";
     export { Process } from "../Components/hero/Process";
     export { PastAuction } from "../Components/hero/PastAuction";
-
-    // Data Util
-    // export { categorylists } from "../Utils/Data";
-    // export { productlists } from "../Utils/Data";
-    // export { upcomingAuctions } from "../Utils/Data";
-    // export { processList } from "../Utils/Data";
-    // export { pastAuctions } from "../Utils/Data";
 
     // Other Utility
     export { ScrollToTop } from "../Utils/ScrollToTop";

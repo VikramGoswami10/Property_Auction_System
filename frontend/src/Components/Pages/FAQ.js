@@ -12,7 +12,7 @@ export const FAQ = () => {
   };
 
   return (
-    <Container className="pt-32 pb-10">  {/* Added pt-32 for spacing below navbar */}
+    <Container className="pt-32 pb-10">
       <Title level={2} className="text-center text-primary mb-6">
         Frequently Asked Questions
       </Title>

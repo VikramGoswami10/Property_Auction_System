@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Caption, Container,PrimaryButton, Title } from "../../Routes";
 import { commonClassNameOfInput } from "../../Components/Common/Design";
+import { baseurl } from "../../Utils/api";
 
 export const LoginAsSeller = () => {
     const [name, setName] = useState(""); // State for name
@@ -17,7 +18,7 @@ export const LoginAsSeller = () => {
         setLoading(true); // Set loading to true
 
         try {
-            const response = await fetch("https://localhost:7155/api/Users/register", {
+            const response = await fetch(baseurl+"Users/register", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({

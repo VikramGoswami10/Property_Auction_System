@@ -29,7 +29,7 @@ export const UpcomingAuction = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-center">
           {upcomingAuctions.map((auction) => (
-            <div className="w-full max-w-sm"> {/* Ensures uniform width */}
+            <div className="w-full max-w-sm">
               <ProductCard item={auction} key={auction.id} />
             </div>
           ))}

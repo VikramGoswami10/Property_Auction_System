@@ -102,5 +102,3 @@ export const HowToBid = () => {
     </div>
   );
 };
-
-// export default HowToBid;

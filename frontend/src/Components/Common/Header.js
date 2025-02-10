@@ -2,36 +2,38 @@ import { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AiOutlineMenu, AiOutlineClose, AiOutlineDown } from "react-icons/ai";
 import { Container} from "../../Routes";
-import { useAuth } from "../../Screens/auth/context/AuthContext"; // ✅ Import AuthContext
+import { useAuth } from "../../Screens/auth/context/AuthContext";
+import { baseurl } from "../../Utils/api";
+
 
 // Default Profile Image
-const defaultProfilePic = "https://www.w3schools.com/howto/img_avatar.png"; // Replace with actual default image
+const defaultProfilePic = "https://www.w3schools.com/howto/img_avatar.png";
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [propertyDropdown, setPropertyDropdown] = useState(false); // ✅ Track property dropdown
+  const [propertyDropdown, setPropertyDropdown] = useState(false);
   const menuRef = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();
   
-  const { user, setUser, fetchUser } = useAuth(); // Use global auth state
+  const { user, setUser, fetchUser } = useAuth();
 
   useEffect(() => {
-    fetchUser(); // ✅ Ensure navbar updates dynamically
+    fetchUser();
   }, []);
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
-  const togglePropertyDropdown = () => setPropertyDropdown(!propertyDropdown); // ✅ Toggle Property Dropdown
+  const togglePropertyDropdown = () => setPropertyDropdown(!propertyDropdown);
 
   useEffect(() => {
     const closeOutsideClick = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
         setIsOpen(false);
         setDropdownOpen(false);
-        setPropertyDropdown(false); // ✅ Close Property Dropdown on outside click
+        setPropertyDropdown(false);
       }
     };
 
@@ -48,20 +50,20 @@ export const Header = () => {
 
   const handleLogout = async () => {
     try {
-      await fetch("https://localhost:7155/api/Users/logout", {
+      await fetch(baseurl+'Users/logout', {
         method: "POST",
         credentials: "include",
       });
 
-      sessionStorage.removeItem("user"); // ✅ Clear session data
-      setUser(null); // ✅ Update AuthContext
+      sessionStorage.removeItem("user");
+      setUser(null);
       navigate("/login");
     } catch (error) {
       console.error("Logout failed");
     }
   };
 
-  // ✅ Function to determine user profile route
+  //Function to determine user profile route
   const getProfileRoute = () => {
     if (!user) return "/login";
     switch (user.userRole) {
@@ -93,7 +95,7 @@ export const Header = () => {
               Home
             </button>
 
-            {/* ✅ Property Dropdown */}
+            {/* Property Dropdown */}
             <div className="relative">
               <button 
                 onClick={togglePropertyDropdown} 

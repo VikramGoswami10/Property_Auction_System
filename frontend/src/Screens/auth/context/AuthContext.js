@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { baseurl } from "../../../Utils/api";
 
 const AuthContext = createContext();
 
@@ -8,7 +9,7 @@ export const AuthProvider = ({ children }) => {
   // Fetch user data dynamically
   const fetchUser = async () => {
     try {
-      const response = await fetch("https://localhost:7155/api/Users/current-user", {
+      const response = await fetch(baseurl+"Users/current-user", {
         method: "GET",
         credentials: "include", // Ensures session is included
       });
