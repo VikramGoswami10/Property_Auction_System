@@ -49,13 +49,6 @@ export const PropertyDetails = () => {
       <div className="text-center text-red-500 mt-10">Property not found</div>
     );
 
-  // Check if the auction is closed
-  const isAuctionClosed = () => {
-    const currentTime = new Date();
-    const endTime = new Date(property.auctionEndDate);
-    return currentTime > endTime;
-  };
-
   // Handle Bid Updates
   const increaseBid = () =>
     setBidAmount((prev) => prev + property.bidIncrement);
@@ -64,13 +57,11 @@ export const PropertyDetails = () => {
 
   // Place a Bid
   const placeBid = () => {
-    if (!isAuctionClosed()) {
-      setCurrentBid(bidAmount);
-      setBidHistory([
-        { user: "You", amount: bidAmount, date: new Date().toLocaleString() },
-        ...bidHistory,
-      ]);
-    }
+    setCurrentBid(bidAmount);
+    setBidHistory([
+      { user: "You", amount: bidAmount, date: new Date().toLocaleString() },
+      ...bidHistory,
+    ]);
   };
 
   // Image Slider Navigation
@@ -142,7 +133,6 @@ export const PropertyDetails = () => {
             <button
               onClick={decreaseBid}
               className="px-3 py-1 bg-gray-300 rounded-full"
-              disabled={isAuctionClosed()}
             >
               -
             </button>
@@ -155,7 +145,6 @@ export const PropertyDetails = () => {
             <button
               onClick={increaseBid}
               className="px-3 py-1 bg-gray-300 rounded-full"
-              disabled={isAuctionClosed()}
             >
               +
             </button>
@@ -164,10 +153,9 @@ export const PropertyDetails = () => {
           {/* Bid Button */}
           <button
             onClick={placeBid}
-            className={`bg-blue-500 text-white w-full py-2 rounded-lg mt-4 ${isAuctionClosed() ? 'opacity-50 cursor-not-allowed' : ''}`}
-            disabled={isAuctionClosed()}
+            className="bg-blue-500 text-white w-full py-2 rounded-lg mt-4"
           >
-            {isAuctionClosed() ? 'Bidding Closed' : 'Place Bid'}
+            Place Bid
           </button>
 
           <button
@@ -191,7 +179,7 @@ export const PropertyDetails = () => {
         <table className="w-full mt-3 border-collapse border border-gray-300">
           <thead>
             <tr className="bg-gray-200">
-              <th className="border p-2">User </th>
+              <th className="border p-2">User</th>
               <th className="border p-2">Amount</th>
               <th className="border p-2">Date</th>
             </tr>
@@ -275,7 +263,9 @@ export const PropertyDetails = () => {
                 as the highest bidder, up to your maximum bid amount. If you are
                 outbid, you will be notified via email so you can opt to
                 increase your bid if you so choose. You also have the option to
-                decrease your proxy bid. If two or more users place identical bids, the bid that was placed first takes precedence, and this includes proxy bids.
+                decrease your proxy bid. If two or more users place identical
+                bids, the bid that was placed first takes precedence, and this
+                includes proxy bids.
                 <button
                   onClick={() => toggleDetails("maxBids")}
                   className="text-blue-600 ml-2"

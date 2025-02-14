@@ -1,31 +1,32 @@
 import React, { useState, useEffect } from "react";
 import {
   LayoutDashboard,
-  Package,
+  Gavel,
+  Trophy,
   History,
   LogOut,
-  Search,
 } from "lucide-react";
 import Sidebar from "../Common/Sidebar";
 import { useNavigate } from "react-router-dom";
-import axios from "axios"; // ✅ Import Axios
+import axios from "axios";
+import { baseurl } from "../../Utils/api";
 
 function BuyerDashboard() {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("dashboard");
-  const [searchTerm, setSearchTerm] = useState("");
-  const [auctions, setAuctions] = useState([]); // ✅ State for Auctions
-  const [biddingHistory, setBiddingHistory] = useState([]); // ✅ State for Bidding History
-  const [loadingAuctions, setLoadingAuctions] = useState(true);
-  const [loadingHistory, setLoadingHistory] = useState(true);
-  const [errorAuctions, setErrorAuctions] = useState(null);
-  const [errorHistory, setErrorHistory] = useState(null);
-  const [wonAuctions, setWonAuctions] = useState([]); // State for Won Auctions
+  const [liveAuctions, setLiveAuctions] = useState([]);
+  const [myBids, setMyBids] = useState([]);
+  const [wonAuctions, setWonAuctions] = useState([]);
+  const [buyerProfile, setBuyerProfile] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const buyerId = 1; // ✅ Replace with dynamic logged-in buyer ID
 
   const menuItems = [
     { icon: LayoutDashboard, label: "Dashboard", value: "dashboard" },
-    { icon: Package, label: "Active Auctions", value: "active-auctions" },
-    { icon: History, label: "Bid History", value: "bid-history" },
+    { icon: Gavel, label: "Live Auctions", value: "live-auctions" },
+    { icon: History, label: "My Bids", value: "my-bids" },
+    { icon: Trophy, label: "Won Auctions", value: "won-auctions" },
     { icon: LogOut, label: "Logout", value: "logout" },
   ];
 
@@ -33,135 +34,68 @@ function BuyerDashboard() {
     navigate("/login");
   };
 
-  const handleWinAuction = (auction) => {
-    // Update won auctions state
-    setWonAuctions((prevWonAuctions) => [...prevWonAuctions, auction]);
-  
-    // Navigate to the won auction details page
-    navigate(`/won-auction/${auction.auctionId}`);
-  };
-
-  // ✅ Fetch Active Auctions from Backend
+  // ✅ Fetch Data
   useEffect(() => {
-    const fetchAuctions = async () => {
+    const fetchData = async () => {
       try {
-        const response = await axios.get("https://localhost:7155/api/Auctions");
-        setAuctions(response.data);
+        // Fetch Live Auctions
+        const liveResponse = await axios.get(`${baseurl}Auctions/live`);
+        setLiveAuctions(liveResponse.data);
+
+        // Fetch My Bids
+        const bidsResponse = await axios.get(`${baseurl}BiddingHistories/buyer/${buyerId}`);
+        setMyBids(bidsResponse.data);
+
+        // Fetch Won Auctions
+        const wonResponse = await axios.get(`${baseurl}Auctions/won/${buyerId}`);
+        setWonAuctions(wonResponse.data);
+
+        // Fetch Buyer Profile
+        const profileResponse = await axios.get(`${baseurl}Users/${buyerId}`);
+        setBuyerProfile(profileResponse.data);
       } catch (error) {
-        console.error("Error fetching auctions:", error);
-        setErrorAuctions("Failed to fetch auctions");
+        console.error("Error fetching buyer data:", error);
+        setError("Failed to fetch data");
       } finally {
-        setLoadingAuctions(false);
+        setLoading(false);
       }
     };
 
-    fetchAuctions();
+    fetchData();
   }, []);
 
-  // ✅ Fetch Bidding History from Backend
-  useEffect(() => {
-    const fetchBiddingHistory = async () => {
-      try {
-        const response = await axios.get("https://localhost:7155/api/BiddingHistories");
-        setBiddingHistory(response.data);
-      } catch (error) {
-        console.error("Error fetching bidding history:", error);
-        setErrorHistory("Failed to fetch bid history");
-      } finally {
-        setLoadingHistory(false);
-      }
-    };
-
-    fetchBiddingHistory();
-  }, []);
-
+  // ✅ Dashboard Overview
   const DashboardContent = () => (
-    <div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div className="bg-purple-600 text-white p-6 rounded-lg shadow-lg">
-          <h3 className="text-lg font-semibold">Active Bids</h3>
-          <p className="text-3xl font-bold">{biddingHistory.length}</p>
-        </div>
-        <div className="bg-blue-600 text-white p-6 rounded-lg shadow-lg">
-          <h3 className="text-lg font-semibold">Won Auctions</h3>
-          <p className="text-3xl font-bold">8</p>
-        </div>
-        <div className="bg-yellow-600 text-white p-6 rounded-lg shadow-lg">
-          <h3 className="text-lg font-semibold">Total Spent</h3>
-          <p className="text-3xl font-bold">₹12,345</p>
-        </div>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+      <div className="bg-blue-600 text-white p-6 rounded-lg shadow-lg">
+        <h3 className="text-lg font-semibold">Live Auctions</h3>
+        <p className="text-3xl font-bold">{liveAuctions.length}</p>
       </div>
-
-      {/* ✅ Recent Bidding History */}
-      <div className="mb-8">
-        <h2 className="text-2xl font-bold mb-4">Recent Activity</h2>
-
-        {/* ✅ Show Loading or Error */}
-        {loadingHistory && <p className="text-gray-500">Loading bid history...</p>}
-        {errorHistory && <p className="text-red-500">{errorHistory}</p>}
-
-        {/* ✅ Bidding History Table */}
-        {!loadingHistory && !errorHistory && (
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <div className="space-y-4">
-              {biddingHistory.map((bid) => (
-                <div key={bid.biddinghistoryId} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                  <div>
-                    <p className="font-semibold">Bid placed on {bid.propertyTitle || "Property"}</p>
-                    <p className="text-sm text-gray-600">Amount: ₹{bid.bidAmount}</p>
-                  </div>
-                  <span className="text-sm text-gray-500">{new Date(bid.timeStamp).toLocaleString()}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
+      <div className="bg-green-600 text-white p-6 rounded-lg shadow-lg">
+        <h3 className="text-lg font-semibold">My Active Bids</h3>
+        <p className="text-3xl font-bold">{myBids.length}</p>
+      </div>
+      <div className="bg-yellow-600 text-white p-6 rounded-lg shadow-lg">
+        <h3 className="text-lg font-semibold">Total Wins</h3>
+        <p className="text-3xl font-bold">{wonAuctions.length}</p>
       </div>
     </div>
   );
 
-  const AuctionsContent = () => (
+  // ✅ Live Auctions Tab
+  const LiveAuctions = () => (
     <div>
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold">Active Auctions</h2>
-        <div className="relative">
-          <input
-            type="text"
-            placeholder="Search auctions..."
-            className="pl-10 pr-4 py-2 border rounded-lg"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <Search className="absolute left-3 top-2.5 text-gray-400" size={20} />
-        </div>
-      </div>
-
-      {/* ✅ Show Loading or Error */}
-      {loadingAuctions && <p className="text-gray-500">Loading auctions...</p>}
-      {errorAuctions && <p className="text-red-500">{errorAuctions}</p>}
-
-      {/* ✅ Active Auctions Grid */}
-      {!loadingAuctions && !errorAuctions && (
+      <h2 className="text-2xl font-bold mb-4">Live Auctions</h2>
+      {loading ? <p>Loading...</p> : error ? <p className="text-red-500">{error}</p> : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {auctions.map((auction) => (
-            <div key={auction.auctionId} className="bg-white rounded-lg shadow-md overflow-hidden">
-              <img 
-                src={auction.image || "https://via.placeholder.com/300"} 
-                alt={auction.title} 
-                className="w-full h-48 object-cover"
-              />
+          {liveAuctions.map((auction) => (
+            <div key={auction.auctionId} className="bg-white rounded-lg shadow-md">
+              <img src={auction.image || "https://via.placeholder.com/300"} alt={auction.title} className="w-full h-48 object-cover" />
               <div className="p-4">
                 <h3 className="text-lg font-semibold mb-2">{auction.title}</h3>
-                <div className="space-y-2">
-                  <p className="text-gray-600">
-                    Current Bid: <span className="font-semibold text-green-600">₹{auction.currentBid}</span>
-                  </p>
-                  <p className="text-gray-600">
-                    Ends: <span className="font-semibold">{auction.endDate}</span>
-                  </p>
-                </div>
-                <button className="w-full mt-4 bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700"
-                onClick={() => handleWinAuction(auction)}>
+                <p className="text-gray-600">Current Bid: ₹{auction.currentBid}</p>
+                <p className="text-gray-600">Ends: {auction.endDate}</p>
+                <button className="w-full mt-4 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
                   Place Bid
                 </button>
               </div>
@@ -171,6 +105,42 @@ function BuyerDashboard() {
       )}
     </div>
   );
+
+  // ✅ My Bids Tab
+  const MyBids = () => (
+    <div>
+      <h2 className="text-2xl font-bold mb-4">My Bids</h2>
+      {loading ? <p>Loading...</p> : (
+        <div className="space-y-4">
+          {myBids.map((bid) => (
+            <div key={bid.BiddingHistoryId} className="p-4 bg-gray-50 rounded-lg flex justify-between items-center">
+              <p className="font-semibold">{bid.PropertyTitle}</p>
+              <p className="text-green-600 font-bold">₹{bid.BidAmount}</p>
+              <span className="text-sm text-gray-500">{new Date(bid.TimeStamp).toLocaleString()}</span>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+
+  // ✅ Won Auctions Tab
+  const WonAuctions = () => (
+    <div>
+      <h2 className="text-2xl font-bold mb-4">Won Auctions</h2>
+      {loading ? <p>Loading...</p> : (
+        <div className="space-y-4">
+          {wonAuctions.map((win) => (
+            <div key={win.AuctionId} className="p-4 bg-gray-50 rounded-lg flex justify-between items-center">
+              <p className="font-semibold">{win.Title}</p>
+              <p className="text-green-600 font-bold">₹{win.FinalPrice}</p>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+
 
   return (
     <div className="flex h-screen bg-gray-100">
@@ -182,7 +152,9 @@ function BuyerDashboard() {
       />
       <main className="flex-1 p-8 overflow-y-auto">
         {activeTab === "dashboard" && <DashboardContent />}
-        {activeTab === "active-auctions" && <AuctionsContent />}
+        {activeTab === "live-auctions" && <LiveAuctions />}
+        {activeTab === "my-bids" && <MyBids />}
+        {activeTab === "won-auctions" && <WonAuctions />}
       </main>
     </div>
   );

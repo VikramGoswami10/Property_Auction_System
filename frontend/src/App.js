@@ -179,18 +179,7 @@ function App() {
               </Layout>
           }
           />
-	        {/* ✅ Won Auction Details Page */}
-          <Route
-            path="/auction/won/:auctionId"
-            element={
-              <Layout>
-                <div className="mt-24">
-                  <WonAuctionDetails />
-                </div>
-              </Layout>
-            }
-          />
-       </Routes>
+        </Routes>
       </BrowserRouter>
     </>
   );
