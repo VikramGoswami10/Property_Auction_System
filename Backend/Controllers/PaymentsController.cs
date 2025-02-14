@@ -1,107 +1,84 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Backend.DTO;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Backend.Models;
+using Razorpay.Api;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace Backend.Controllers
+[Route("api/[controller]")]
+[ApiController]
+public class PaymentsController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class PaymentsController : ControllerBase
+    private readonly RazorpayClient _razorpayClient;
+
+    public PaymentsController()
     {
-        private readonly PropertyAuctionContext _context;
+        _razorpayClient = new RazorpayClient("YOUR_KEY_ID", "YOUR_KEY_SECRET");
+    }
 
-        public PaymentsController(PropertyAuctionContext context)
+    // Create Razorpay Order
+    [HttpPost("createOrder")]
+    public IActionResult CreateOrder([FromBody] PaymentRequestDTO request)
+    {
+        try
         {
-            _context = context;
-        }
-
-        // GET: api/Payments
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Payment>>> GetPayments()
-        {
-            return await _context.Payments.ToListAsync();
-        }
-
-        // GET: api/Payments/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Payment>> GetPayment(int id)
-        {
-            var payment = await _context.Payments.FindAsync(id);
-
-            if (payment == null)
+            Dictionary<string, object> options = new Dictionary<string, object>
             {
-                return NotFound();
-            }
+                { "amount", request.Amount }, // Amount in paise
+                { "currency", request.Currency },
+                { "payment_capture", "1" }, // Auto-capture
+                { "receipt", Guid.NewGuid().ToString() }
+            };
 
-            return payment;
-        }
+            Order order = _razorpayClient.Order.Create(options);
 
-        // PUT: api/Payments/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutPayment(int id, Payment payment)
-        {
-            if (id != payment.PaymentId)
+            return Ok(new
             {
-                return BadRequest();
-            }
-
-            _context.Entry(payment).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PaymentExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+                orderId = order["id"].ToString(),
+                amount = request.Amount,
+                currency = request.Currency
+            });
         }
-
-        // POST: api/Payments
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Payment>> PostPayment(Payment payment)
+        catch (Exception ex)
         {
-            _context.Payments.Add(payment);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetPayment", new { id = payment.PaymentId }, payment);
+            return BadRequest(new { message = "Failed to create order", error = ex.Message });
         }
+    }
 
-        // DELETE: api/Payments/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePayment(int id)
+    // Capture Razorpay Payment
+    [HttpPost("capture")]
+    public async Task<IActionResult> CapturePayment([FromBody] CapturePaymentRequestDTO request)
+    {
+        try
         {
-            var payment = await _context.Payments.FindAsync(id);
-            if (payment == null)
+            Razorpay.Api.Payment razorpayPayment = _razorpayClient.Payment.Fetch(request.razorpay_payment_id);
+
+            if (razorpayPayment == null || razorpayPayment.Attributes("status").ToString() != "authorized")
             {
-                return NotFound();
+                return BadRequest(new { message = "Invalid or Unsuccessful Payment" });
             }
+            Dictionary<string, object> captureOptions = new Dictionary<string, object>
+            {
+                { "amount", razorpayPayment.Attributes("amount") }, // Amount in paise
+                { "currency", "INR" } // Ensure currency is passed
+            };
 
-            _context.Payments.Remove(payment);
-            await _context.SaveChangesAsync();
+            // Capture payment with parameters
+            Razorpay.Api.Payment capturedPayment = razorpayPayment.Capture(captureOptions);
 
-            return NoContent();
+            await SavePaymentDetails(request.razorpay_payment_id, request.razorpay_order_id, capturedPayment.Attributes("amount"));
+
+            return Ok(new { message = "Payment captured successfully", paymentId = request.razorpay_payment_id });
         }
-
-        private bool PaymentExists(int id)
+        catch (Exception ex)
         {
-            return _context.Payments.Any(e => e.PaymentId == id);
+            return BadRequest(new { message = "Payment capture failed", error = ex.Message });
         }
+    }
+
+    private async Task SavePaymentDetails(string paymentId, string orderId, object amount)
+    {
+        // Implement database saving logic here if needed
+        await Task.CompletedTask;
     }
 }

@@ -28,6 +28,12 @@ export const AuctionPage = () => {
     setFilteredProperties(properties);
   };
 
+  const isAuctionEnded = (auctionEndDate) => {
+    const currentTime = new Date();
+    const endTime = new Date(auctionEndDate);
+    return currentTime >= endTime;
+  };
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
 
@@ -92,13 +98,19 @@ export const AuctionPage = () => {
 
                 {/* Action Buttons */}
                 <div className="flex justify-between items-center mt-4">
-                  <button
-                    className="bg-primary text-white px-6 py-2 rounded-md text-sm font-semibold"
-                    onClick={() => navigate(`/property/${auction.id}`)}
-                  >
-                    View Details
-                  </button>
-                  <MdFavoriteBorder size={24} className="cursor-pointer hover:text-red-500" />
+                  {isAuctionEnded(auction.auctionEndDate) ? (
+                    <p className="text-red-500 font-semibold">Auction Ended</p>
+                  ) : (
+                    <>
+                      <button
+                        className="bg-primary text-white px-6 py-2 rounded-md text-sm font-semibold"
+                        onClick={() => navigate(`/property/${auction.id}`)}
+                      >
+                        View Details
+                      </button>
+                      <MdFavoriteBorder size={24} className="cursor-pointer hover:text-red-500" />
+                    </>
+                  )}
                 </div>
               </div>
             </div>
